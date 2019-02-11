@@ -1,0 +1,3975 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-11-28 Wed 10:20 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Discrete Geometry 1</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Hari" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Discrete Geometry 1</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1c48708">1. Lecture 1</a></li>
+<li><a href="#org4437411">2. Lecture 2 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-10-17 Wed&gt;</span></span></a>
+<ul>
+<li><a href="#org0303b4a">2.1. Definitions</a>
+<ul>
+<li><a href="#org9bc71c7">2.1.1. Positive half</a></li>
+<li><a href="#org2e9452d">2.1.2. Affine hyperplane</a></li>
+<li><a href="#orgf97dfba">2.1.3. (Question) What is the space of all oriented hyperplanes of \(\R^n\)</a></li>
+<li><a href="#orgb0e50e1">2.1.4. Definition of pos?</a></li>
+</ul>
+</li>
+<li><a href="#org005590e">2.2. Radon's theorem</a></li>
+<li><a href="#orge8e6297">2.3. Definitions</a>
+<ul>
+<li><a href="#orgf282a3b">2.3.1. Radon partition</a></li>
+</ul>
+</li>
+<li><a href="#org284c9b2">2.4. Proof</a>
+<ul>
+<li><a href="#org3503362">2.4.1. Part 1</a></li>
+<li><a href="#orgc591e39">2.4.2. Part 2</a></li>
+<li><a href="#org349c7fe">2.4.3. Part 3</a></li>
+</ul>
+</li>
+<li><a href="#orga3c0405">2.5. Questions</a>
+<ul>
+<li><a href="#org8342648">2.5.1. About affine maps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgccd3f18">3. Lecture 3 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-10-23 Tue&gt;</span></span></a>
+<ul>
+<li><a href="#org884f3f1">3.1. Review</a>
+<ul>
+<li><a href="#orgf66884a">3.1.1. Radon's theorem</a></li>
+</ul>
+</li>
+<li><a href="#org2440a55">3.2. Charatheodery's theorem</a>
+<ul>
+<li><a href="#org197fc97">3.2.1. Proof</a></li>
+<li><a href="#org5ac1cf8">3.2.2. Lemma about compactness of convex hull of compact set</a></li>
+</ul>
+</li>
+<li><a href="#org917ec53">3.3. Nearest points map and supporting hyperplane</a>
+<ul>
+<li><a href="#org1b623f8">3.3.1. Lemma</a></li>
+<li><a href="#orgf1a0dd1">3.3.2. Proof</a></li>
+<li><a href="#org1539e2c">3.3.3. Definition of nearest point map</a></li>
+</ul>
+</li>
+<li><a href="#org4175256">3.4. Properties of nearest point map</a>
+<ul>
+<li><a href="#org2640acf">3.4.1. Definition (supporting hyperplane)</a></li>
+<li><a href="#orgf7c8ee1">3.4.2. Aim</a></li>
+<li><a href="#org0dc7562">3.4.3. Lemma</a></li>
+<li><a href="#orgf0e61dc">3.4.4. Proof</a></li>
+<li><a href="#orgf52b080">3.4.5. Lemma</a></li>
+<li><a href="#orgb5cbbd5">3.4.6. Proof</a></li>
+<li><a href="#org33cc67d">3.4.7. Lemma Busemann and Faller's lemma</a></li>
+<li><a href="#orgf2f6260">3.4.8. Proof</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf20e7f9">4. Lecture 4 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-10-24 Wed&gt;</span></span></a>
+<ul>
+<li><a href="#org4baea44">4.1. Review</a>
+<ul>
+<li><a href="#org5c42b7c">4.1.1. Nearest point map</a></li>
+<li><a href="#orgbf64e7f">4.1.2. Some properties</a></li>
+<li><a href="#org1fad02f">4.1.3. Lemma</a></li>
+</ul>
+</li>
+<li><a href="#org08af2c6">4.2. Theorem</a>
+<ul>
+<li><a href="#org5bcc763">4.2.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org5a6feab">4.3. Theorem</a>
+<ul>
+<li><a href="#org54d94f7">4.3.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org600580b">4.4. Faces and Normal Cone</a>
+<ul>
+<li><a href="#org941ea88">4.4.1. Definition</a></li>
+<li><a href="#orgf761fe4">4.4.2. Lemma about convexity of face</a></li>
+<li><a href="#orgf4ce497">4.4.3. Dimension</a></li>
+</ul>
+</li>
+<li><a href="#org5f21c24">4.5. Lemma</a>
+<ul>
+<li><a href="#org389f601">4.5.1. Proof</a></li>
+<li><a href="#org7e16c81">4.5.2. Remark</a></li>
+</ul>
+</li>
+<li><a href="#orgf51335b">4.6. Lemma</a>
+<ul>
+<li><a href="#org05743c3">4.6.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org9bcd92c">4.7. Lemma</a>
+<ul>
+<li><a href="#orgaab6cb7">4.7.1. Proof</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org7e74c75">5. Lecture 5 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-10-30 Tue&gt;</span></span></a>
+<ul>
+<li><a href="#org3820805">5.1. Review</a></li>
+<li><a href="#orge109ad6">5.2. Definition (Normal cone)</a></li>
+<li><a href="#orge827f37">5.3. Lemma</a>
+<ul>
+<li><a href="#orgaf1f872">5.3.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#orgae02ca3">5.4. Definition (Dual cone)</a></li>
+<li><a href="#orgdf92b24">5.5. Lemma</a></li>
+<li><a href="#org6909514">5.6. Lemma</a>
+<ul>
+<li><a href="#org8b3946e">5.6.1. <span class="todo TODO">TODO</span> Proof</a></li>
+</ul>
+</li>
+<li><a href="#orgfbf2ac6">5.7. A random story</a></li>
+<li><a href="#orgfdc10ee">5.8. Definition</a></li>
+<li><a href="#orgfcc64f9">5.9. Theorem</a>
+<ul>
+<li><a href="#org4df455d">5.9.1. <span class="todo TODO">TODO</span> Proof</a></li>
+<li><a href="#org8342a9d">5.9.2. Random stuff</a></li>
+</ul>
+</li>
+<li><a href="#org7517419">5.10. Definition (Normal fan)</a></li>
+<li><a href="#orgf79ce06">5.11. Support and distance functionn</a>
+<ul>
+<li><a href="#orgf06a8ea">5.11.1. Definition (support function)</a></li>
+<li><a href="#org30887ab">5.11.2. Question?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org2b71d7d">6. Lecture 6 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-06 Tue&gt;</span></span></a>
+<ul>
+<li><a href="#org73384fb">6.1. Support and distance function</a>
+<ul>
+<li><a href="#org5246aed">6.1.1. Definition</a></li>
+<li><a href="#org9e09da4">6.1.2. Lemma</a></li>
+<li><a href="#orgfd6dd91">6.1.3. Proof</a></li>
+<li><a href="#orge18d715">6.1.4. Lemma</a></li>
+<li><a href="#org5a23f3c">6.1.5. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org6786e41">6.2. Convex function</a>
+<ul>
+<li><a href="#org48f5607">6.2.1. Definition</a></li>
+</ul>
+</li>
+<li><a href="#org1780f73">6.3. Lemma</a>
+<ul>
+<li><a href="#orgb29e4e1">6.3.1. <span class="todo TODO">TODO</span> Proof</a></li>
+</ul>
+</li>
+<li><a href="#org4e59f8d">6.4. Lemma</a>
+<ul>
+<li><a href="#orga7a343e">6.4.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org5fabf30">6.5. Lemma (Convex functions are continuous)</a>
+<ul>
+<li><a href="#orgc209188">6.5.1. <span class="todo TODO">TODO</span> Proof</a></li>
+</ul>
+</li>
+<li><a href="#org870a97a">6.6. Lemma</a>
+<ul>
+<li><a href="#orgcba63c0">6.6.1. Examples</a></li>
+<li><a href="#org236ca3e">6.6.2. <span class="todo TODO">TODO</span> Proof</a></li>
+</ul>
+</li>
+<li><a href="#org29fd587">6.7. Lemma</a>
+<ul>
+<li><a href="#orga0891b7">6.7.1. <span class="todo TODO">TODO</span> Proof</a></li>
+</ul>
+</li>
+<li><a href="#org64042c9">6.8. Remark</a></li>
+</ul>
+</li>
+<li><a href="#org7f49686">7. Lecture 7 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-07 Wed&gt;</span></span></a>
+<ul>
+<li><a href="#org3fcc9c1">7.1. Support and distance function (Review)</a>
+<ul>
+<li><a href="#orgc3bd473">7.1.1. Definition</a></li>
+<li><a href="#orgadbed90">7.1.2. Lemma</a></li>
+<li><a href="#orgfb67249">7.1.3. Definition</a></li>
+<li><a href="#org78049df">7.1.4. Lemma</a></li>
+<li><a href="#orgf1b28db">7.1.5. Lemma</a></li>
+</ul>
+</li>
+<li><a href="#org1533e19">7.2. Lemma</a></li>
+<li><a href="#org9373641">7.3. Lemma (linearity of \(h_K\))</a>
+<ul>
+<li><a href="#orgff6f182">7.3.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org68da9e9">7.4. Definition</a></li>
+<li><a href="#org6a4fb65">7.5. Lemma</a></li>
+<li><a href="#org70c59fb">7.6. Lemma</a>
+<ul>
+<li><a href="#org84efb01">7.6.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#orgdd3faa8">7.7. Definition (Centrally symmetric)</a></li>
+<li><a href="#org673a943">7.8. Theorem</a></li>
+<li><a href="#org021b759">7.9. Example</a></li>
+<li><a href="#orgbd766a8">7.10. Polar bodies</a></li>
+<li><a href="#org40c27ed">7.11. Theorem</a>
+<ul>
+<li><a href="#org0a6a7c3">7.11.1. Proof</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgbee5a24">8. Lecture 8 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-13 Tue&gt;</span></span></a>
+<ul>
+<li><a href="#org1794e11">8.1. Polar Body</a></li>
+<li><a href="#org1e2df7c">8.2. Theorem</a>
+<ul>
+<li><a href="#org69848e7">8.2.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org6303f2f">8.3. Random stuff</a></li>
+<li><a href="#org042d9dc">8.4. Theorem</a></li>
+<li><a href="#org51a5790">8.5. Lemma</a></li>
+<li><a href="#orgd6e61df">8.6. Lemma</a>
+<ul>
+<li><a href="#orgd3ab6ee">8.6.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#orgd41ed38">8.7. Proof of duality of distance and \(h_K\)</a></li>
+<li><a href="#orgbd8bedb">8.8. Theorem</a></li>
+<li><a href="#orgb32ab14">8.9. Theorem</a></li>
+<li><a href="#org67ba79a">8.10. Radon's theorem</a>
+<ul>
+<li><a href="#org8c3b619">8.10.1. Proof</a></li>
+<li><a href="#orgb3348b9">8.10.2. Questions?</a></li>
+</ul>
+</li>
+<li><a href="#org4fb48b4">8.11. Affine space</a></li>
+<li><a href="#org7efd75d">8.12. Random stuff</a></li>
+<li><a href="#org56fc1f1">8.13. Radon's theorem rephrased</a></li>
+<li><a href="#org0991e27">8.14. Continuous variant of Radon's theorem (Topological Radon)</a></li>
+<li><a href="#org3f866e1">8.15. Helly's theorem</a>
+<ul>
+<li><a href="#org7d87def">8.15.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#orgf5f19ad">8.16. Helly's theorem*</a></li>
+</ul>
+</li>
+<li><a href="#orgcc8ab48">9. Lecture 9 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-14 Wed&gt;</span></span></a>
+<ul>
+<li><a href="#org7a283eb">9.1. Helly's theorem</a>
+<ul>
+<li><a href="#org63421c6">9.1.1. Is convexity important?</a></li>
+<li><a href="#org4b90755">9.1.2. Remark about infinite families</a></li>
+</ul>
+</li>
+<li><a href="#orgfeafd6f">9.2. Charatheodery's theorem</a></li>
+<li><a href="#org61424a0">9.3. Colorful Charatheodery's theorem (theorem by Inere Bardney)</a>
+<ul>
+<li><a href="#orgd70843f">9.3.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org337a424">9.4. Tverberg's theorem</a>
+<ul>
+<li><a href="#org31a1bc7">9.4.1. Question (Topological Tverberg Conjecture)</a></li>
+</ul>
+</li>
+<li><a href="#org641a92c">9.5. Weak Tverberg theorem</a>
+<ul>
+<li><a href="#org214c4ed">9.5.1. Proof</a></li>
+<li><a href="#orgb50eca5">9.5.2. <span class="todo TODO">TODO</span> Corollary</a></li>
+</ul>
+</li>
+<li><a href="#org390ed79">9.6. Optimal colored Tverberg theorem</a>
+<ul>
+<li><a href="#orga8deb71">9.6.1. Topological Tverberg theorem</a></li>
+<li><a href="#org32f75b8">9.6.2. Optimal colored version</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgc765256">10. Lecture 10 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-20 Tue&gt;</span></span></a>
+<ul>
+<li><a href="#org23ab4d1">10.1. Lemma about convex functions</a>
+<ul>
+<li><a href="#orgba8ecc5">10.1.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org44b76b1">10.2. Theorem (Jensen's inequality)</a></li>
+<li><a href="#orgbedc25e">10.3. Definition</a></li>
+<li><a href="#org98810cd">10.4. Theorem</a>
+<ul>
+<li><a href="#org53fbe6e">10.4.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org148a7be">10.5. Combinatorial theory of Polytopes and Polyhedral sets</a>
+<ul>
+<li><a href="#org221093f">10.5.1. A boundary complex of a polyhedral set</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org8d1a2a0">11. Lecture 11 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-21 Wed&gt;</span></span></a>
+<ul>
+<li><a href="#org9d143dd">11.1. Definition</a></li>
+<li><a href="#org948b5a0">11.2. Theorem</a>
+<ul>
+<li><a href="#orgf684eb7">11.2.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org076e057">11.3. Corollary</a></li>
+<li><a href="#orge229d26">11.4. Perspective</a></li>
+<li><a href="#org4a2d248">11.5. Theorem</a>
+<ul>
+<li><a href="#org2b675a0">11.5.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org36248ca">11.6. Lemma</a></li>
+<li><a href="#org896b6b6">11.7. Theorem</a>
+<ul>
+<li><a href="#org0dc4970">11.7.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org36b479d">11.8. Theorem</a>
+<ul>
+<li><a href="#org0409f68">11.8.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org278b86a">11.9. Theorem</a>
+<ul>
+<li><a href="#orgd62f417">11.9.1. Proof</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org55073bf">12. Lecture 12 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-27 Tue&gt;</span></span></a>
+<ul>
+<li><a href="#orgb8f0786">12.1. Partially Ordered sets</a></li>
+<li><a href="#org46cbedc">12.2. Partial order</a></li>
+<li><a href="#orgbe0412c">12.3. Boundary of Polytope</a></li>
+<li><a href="#orgba34e1c">12.4. Theorem about ridges</a>
+<ul>
+<li><a href="#org533d2b7">12.4.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#orga5055cf">12.5. Theorem</a>
+<ul>
+<li><a href="#orgda2995c">12.5.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#org9168caf">12.6. Definitions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1c48708" class="outline-2">
+<h2 id="org1c48708"><span class="section-number-2">1</span> Lecture 1</h2>
+</div>
+<div id="outline-container-org4437411" class="outline-2">
+<h2 id="org4437411"><span class="section-number-2">2</span> Lecture 2 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-10-17 Wed&gt;</span></span></h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org0303b4a" class="outline-3">
+<h3 id="org0303b4a"><span class="section-number-3">2.1</span> Definitions</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org9bc71c7" class="outline-4">
+<h4 id="org9bc71c7"><span class="section-number-4">2.1.1</span> Positive half</h4>
+</div>
+<div id="outline-container-org2e9452d" class="outline-4">
+<h4 id="org2e9452d"><span class="section-number-4">2.1.2</span> Affine hyperplane</h4>
+</div>
+<div id="outline-container-orgf97dfba" class="outline-4">
+<h4 id="orgf97dfba"><span class="section-number-4">2.1.3</span> (Question) What is the space of all oriented hyperplanes of \(\R^n\)</h4>
+</div>
+<div id="outline-container-orgb0e50e1" class="outline-4">
+<h4 id="orgb0e50e1"><span class="section-number-4">2.1.4</span> Definition of pos?</h4>
+</div>
+</div>
+<div id="outline-container-org005590e" class="outline-3">
+<h3 id="org005590e"><span class="section-number-3">2.2</span> Radon's theorem</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Three cases
+</p>
+
+<ul class="org-ul">
+<li>If the size of M is greater than or equal to n+2, there is a radon partiiton</li>
+<li><p>
+If the size of \(M\) is greater than or equal to \(n+1\), \(0\) is an appex of
+\(M\) and \(0\neq M\). or \(|M| \ge n+2\).
+</p>
+
+<p>
+then there is a partition of \(M_1\) and \(M_2\) of \(M\) such that \(\pos M_1
+     \cap pos M_2 \neq \emptyset\).
+</p></li>
+<li>partition is unique if and only i f
+<ul class="org-ul">
+<li>\(|M| = n+2\) and \(n+1\) points of \(m\) are affinely dependent.</li>
+<li>\(|M| = n+1\) and no \(n\) vectors of \(M\) are linearly independent.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge8e6297" class="outline-3">
+<h3 id="orge8e6297"><span class="section-number-3">2.3</span> Definitions</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-orgf282a3b" class="outline-4">
+<h4 id="orgf282a3b"><span class="section-number-4">2.3.1</span> Radon partition</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+A partition \(M_1, M_2\) such that \(\conv M_1 \cap conv M_2 \neq \emptyset\) is called a <b>Radon partition</b>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org284c9b2" class="outline-3">
+<h3 id="org284c9b2"><span class="section-number-3">2.4</span> Proof</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-org3503362" class="outline-4">
+<h4 id="org3503362"><span class="section-number-4">2.4.1</span> Part 1</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+Size of \(M\) greater than \(n+2\). Take \(x_1, \cdots, x_{n+2}\) pairwise disjoint points from $M.
+</p>
+
+<p>
+Then \(x_1, \cdots x_{n+2}\) are affinely dependent, meaning that that you can
+choose scalars, real such that \(\sum \lambda_i x_i = 0\).
+</p>
+
+<p>
+We can assume that for some \(1 \le j \le n+1\) holds
+</p>
+
+<p>
+\(\lambda_1 >0, \cdots, \lambda_i >0\) and \(\lambda_{i+1} \le 0, \cdots, \lambda{n+2} \le 0\).
+</p>
+
+<p>
+\(\lambda = \lambda_1 + \cdots + \lambda_j = -(\lambda_{i+1} + \cdots + \lambda_{n+2}\).
+</p>
+
+<p>
+\(X=\frac1\lambda (\lambda_1 x_1 + \cdots \lambda_j x_j)\) a convex
+combination \(\in \conv\{x_1, \cdots, x_j\}\).
+</p>
+
+<p>
+\[\frac{1}{\lambda}(\lambda_1x_1 + \cdots + \lambda_{n+2}x_{n+2}) = 0\]
+</p>
+
+
+<p>
+\[X= \frac{1}{\lambda}(\lambda_1x_1 + \cdots + \lambda_{j}x_{j})  = -\frac{1}{\lambda}(\lambda_jx_j + \cdots + \lambda_{n+2}x_{n+2}) = 0\]
+</p>
+
+<p>
+a convex combination.
+</p>
+
+<p>
+Thus \(X\) is inside both the intersection.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc591e39" class="outline-4">
+<h4 id="orgc591e39"><span class="section-number-4">2.4.2</span> Part 2</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<p>
+\(\pos M\) is a cone with appex &#x2026; 
+</p>
+
+<p>
+<b>A drawing</b>
+</p>
+
+<p>
+For every point \(x_i \in M\), there is \(\alpha_i > 0\), such that \(\alpha_ix_i
+    \in H'\),,
+</p>
+
+<p>
+blah blah.
+</p>
+
+<p>
+Keyword: matroids.
+</p>
+</div>
+</div>
+<div id="outline-container-org349c7fe" class="outline-4">
+<h4 id="org349c7fe"><span class="section-number-4">2.4.3</span> Part 3</h4>
+<div class="outline-text-4" id="text-2-4-3">
+<p>
+I didn't type.
+</p>
+
+<p>
+(A part.) A partition is unique.
+</p>
+
+<p>
+Let \(\vert M \vert = n+2\) and \(x_1, \cdots, x_{n+2}\) are affinely dependent implies
+\(x_1, \cdots x_{n+1}\) (dropped one point) have to be on a affine hyperplane.
+Then by Radon's theorem, there is a partition \(M_1'\) and \(M_2'\) such that
+the convex hulls of these intersect. But then we can add the element
+\(x_{n+2}\) to \(M_1'\) or \(M_2'\) to form two different partitions. Thus we have
+two Radon partitions of \(M\) and thus this is a contradiction.
+</p>
+
+<p>
+Case for \(|M| \ge n+3\). Let \(\tilde{M} \subset M\) and \(|\tilde{M}| = n+2\)
+such that \(M-\tilde M \neq \emptyset\). Then \(\tilde M_1, \tilde M_2\) is a
+partition of \(\tilde M\).
+</p>
+
+<p>
+\(\conv \tilde M_1 \cap \conv \tilde M_2 \neq \emptyset\).
+</p>
+
+<p>
+\[\tilde M_1 \cap (M-\tilde M), \tilde M_2\]
+</p>
+
+<p>
+and \[\tilde M_2 \cap (M-\tilde M)\] forms two different radon partitions and
+again, we have a contradiction.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga3c0405" class="outline-3">
+<h3 id="orga3c0405"><span class="section-number-3">2.5</span> Questions</h3>
+<div class="outline-text-3" id="text-2-5">
+</div>
+<div id="outline-container-org8342648" class="outline-4">
+<h4 id="org8342648"><span class="section-number-4">2.5.1</span> About affine maps</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<p>
+We have an arbitrary affine map between a simplex (n+1 dimensional) and
+\(\R^n\). implies, there exist faces of the simpleces such that the faces do
+not intersect, but the images of the faces will intersect. Apparently this
+follows from the Radon's theorem. A different formulation of Radon's theorem
+</p>
+
+<p>
+\(a\colon T_{n+1} \rightarrow \R^n\)
+</p>
+
+<p>
+<b>Question</b>: Replace the affine map by a continuous map and is it still true? <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+
+<p>
+<b>Question</b>: How many points in \(M \subset \R^d\) you should have to generate
+that for \(n\ge 2\), there is a partition \(M_1, \cdots, M_r\) of \(M\) such that
+the intersection of the convex hulls of \(M_i\) are non-empty. 
+</p>
+
+<p>
+<b>Question</b>: More points, minimal number of points?
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgccd3f18" class="outline-2">
+<h2 id="orgccd3f18"><span class="section-number-2">3</span> Lecture 3 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-10-23 Tue&gt;</span></span></h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org884f3f1" class="outline-3">
+<h3 id="org884f3f1"><span class="section-number-3">3.1</span> Review</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-orgf66884a" class="outline-4">
+<h4 id="orgf66884a"><span class="section-number-4">3.1.1</span> Radon's theorem</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<ol class="org-ol">
+<li>If \(M \subset \R^n\) and \(\vert M \vert \ge n+2\), then there exists a
+partition \(M_1\) and \(M_2\) of \(M\) such that \(\conv M_1 \cap \conv M_2 \neq
+       \emptyset\).</li>
+<li>If \(M \subset \R^n\) and either \(\vert M \vert \ge n+2\) and \(0\neq M\) on
+\(\vert M \vert \ge n+2\), then there is a partition of \(M_1\), \(M_2\) of \(M\)
+such that \(\pos M_1 \cap \pos M_2 \neq \empty\)</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org2440a55" class="outline-3">
+<h3 id="org2440a55"><span class="section-number-3">3.2</span> Charatheodery's theorem</h3>
+<div class="outline-text-3" id="text-3-2">
+<ol class="org-ol">
+<li>Let \(M\subset \R^n\), then \(\conv M\) is the set of all convex combinations
+of at most \(n+1\) points from \(M\). <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></li>
+<li>Let \(M\subset \R^n\). Then \(\pos M\) is the set of all positive combinations
+of at most \(n\) points from \(M\).</li>
+</ol>
+</div>
+<div id="outline-container-org197fc97" class="outline-4">
+<h4 id="org197fc97"><span class="section-number-4">3.2.1</span> Proof</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+\(x\in \conv M \implies\) there exists \(\lambda_1, \cdots, \lambda_n\) and \(x_1,\cdots, x_n \in M\). 
+</p>
+
+<p>
+\(x=\lambda_1x_1+\cdots + \lambda_rx_r\) and \(\sum \lambda_i = 1\), \(\lambda_i \ge 0\).
+</p>
+
+<p>
+Let the presentation be such that \(r\) is minimal. (We can do this because we
+are taking minimum over natural numbers.) Let us assume that \(M \ge n+2\),
+then there exists an affine dependence \(\mu_1x_2 + \cdots \mu_rx_r = 0\),
+\(\mu_1 + \cdots + \mu_r = 0\) and not all \(\mu_i\) 's are zero.
+</p>
+
+<p>
+(Basically the idea is that we assume the minimality of \(r\) and if \(r \ge
+    n+2\), then there is an affine dependence, and then use this to contradict
+the  minimality of \(r\).)<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>
+</p>
+</div>
+</div>
+<div id="outline-container-org5ac1cf8" class="outline-4">
+<h4 id="org5ac1cf8"><span class="section-number-4">3.2.2</span> Lemma about compactness of convex hull of compact set</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+\(M^{n+1} \times \Delta \rightarrow M\). Here the space on the left is the set
+of all \(n+1\) points of \(M\) and \(\Delta\) is a simplex.
+</p>
+
+<p>
+Now, it follows from the fact that image of a compact set is compact.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org917ec53" class="outline-3">
+<h3 id="org917ec53"><span class="section-number-3">3.3</span> Nearest points map and supporting hyperplane</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+<div id="outline-container-org1b623f8" class="outline-4">
+<h4 id="org1b623f8"><span class="section-number-4">3.3.1</span> Lemma</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+Let \(K\subset \R^n\) be closed and convex. Then for every \(x\in \R^n\), there
+is unique point \(x^1 \in K\) such that \[\Vert x - x^1\Vert = \inf\Vert x -
+    y\Vert = d(x, K)\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgf1a0dd1" class="outline-4">
+<h4 id="orgf1a0dd1"><span class="section-number-4">3.3.2</span> Proof</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<p>
+We can find a sequence of points \((y_n)\) in \(M\) such that the distance from
+\(x\) is less than \(1/n\). Now, the sequence is Cauchy. Since, \(\R^n\) is
+complete, it has to converge, and since \(K\) is closed, we are done. <sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>
+</p>
+
+<p>
+Uniqueness: Given \(X\), if there are two points \(x'\) and \(x''\) such that the
+distances from \(x\) from these two points are the same. In the plane \(x, x',
+    x''\), the triangle \(\Delta x x' x''\) exists. But then a perpendicular to the
+side \(x'x''\) would be smaller than the distance to \(x'\) or \(x''\). This is a
+contradiction. Hence the points have to be unique. (Here the convexity of
+the set is used.)
+</p>
+</div>
+</div>
+<div id="outline-container-org1539e2c" class="outline-4">
+<h4 id="org1539e2c"><span class="section-number-4">3.3.3</span> Definition of nearest point map</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<p>
+Given \(K\subset \R^n\) be a closed convex set. Then \(p_k \mathbb \R^n
+    \rightarrow K\) is the nearest points map. (This is defined using the last
+lemma.)
+</p>
+
+<p>
+If \(x\in K\), then \(p_k(x) = x\). \(p_K\) is surjective. Usually it is not
+injective, if \(K = \R^n\), then it is injective. 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4175256" class="outline-3">
+<h3 id="org4175256"><span class="section-number-3">3.4</span> Properties of nearest point map</h3>
+<div class="outline-text-3" id="text-3-4">
+</div>
+<div id="outline-container-org2640acf" class="outline-4">
+<h4 id="org2640acf"><span class="section-number-4">3.4.1</span> Definition (supporting hyperplane)</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<p>
+A hyperplane \(H\) is a supporting hyperplane if \(a\) closed convex set in \(\R^n\) if 
+\[H \cap K \neq \emptyset \textup{ and } K \subset H^- \textup{ or } K \subset H^+\]
+</p>
+
+<p>
+If we take a \(u \in S(\R^n), \alpha \in \R^n\), \(H^+ = \{x\in\R^n \vert \langle x, u \rangle \ge \alpha\}\)
+\(H^- = \{x\in\R^n \vert \langle x, u \rangle \le \alpha\}\).
+</p>
+
+<p>
+A picture that I didn't draw 
+</p>
+
+<p>
+Notions:
+</p>
+<ol class="org-ol">
+<li>Supporting half space</li>
+<li>Outer normal</li>
+<li>Inner normal</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgf7c8ee1" class="outline-4">
+<h4 id="orgf7c8ee1"><span class="section-number-4">3.4.2</span> Aim</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<p>
+We want to prove: Given a convex body and take a point in the boundary. I
+want to prove that there is a supporting hyperplane (?)
+</p>
+</div>
+</div>
+<div id="outline-container-org0dc7562" class="outline-4">
+<h4 id="org0dc7562"><span class="section-number-4">3.4.3</span> Lemma</h4>
+<div class="outline-text-4" id="text-3-4-3">
+<p>
+Let \(\varphi \neq K \subset \R^n\) be a closed convex set. If \(x \in \R^n\setminus K\),
+then the hyperplane \(H = \{y \in \R^n \vert \langle y, u \rangle = 1\}\) is a
+supporting hyperplane of \(K\) at \(x' = p_k(x)\) where \(u=\frac{x-x'}{\langle
+    x', x - x'\rangle}\).
+</p>
+
+<p>
+A diagram I didn't draw (A convex body, x is a point outside, \(x'\) is the
+closest element, meaning that \(x'\) is on the hyperplane and we have a
+direction vector \(x - x'\), we normalize this vector. (<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>)) <sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>
+</p>
+</div>
+</div>
+<div id="outline-container-orgf0e61dc" class="outline-4">
+<h4 id="orgf0e61dc"><span class="section-number-4">3.4.4</span> Proof</h4>
+<div class="outline-text-4" id="text-3-4-4">
+<p>
+\(H\) is a hyperplane and \(x' \in H\), then \(\langle x - x', x - x'\rangle \ge
+    0 \implies \langle x, x-x' \rangle > \langle x', x-x'\rangle \implies \langle
+    x, (x-x')/(\langle x', x-x'\rangle) \implies x\in H^+\)
+</p>
+
+<p>
+Now we assume that \(H\) is not a supporting hyperplane, which means that
+there is as point \(y\) inside \(K\cap (H+\setminus H)\). Consider the
+triangle \(\Delta x x' y\). Since \(x\) is perpendicular to the \(yx'\), the angle
+\(yx_1 x\) is actute. We kinda want to prove that there is a point on the line
+segment that would minimize the distance from \(x\). The argument is similar
+to the argument for last theorem. (The perpendicular from \(x\) would give a
+point on the segment \(x'y\) that would be the minimum.) <sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>
+</p>
+</div>
+</div>
+<div id="outline-container-orgf52b080" class="outline-4">
+<h4 id="orgf52b080"><span class="section-number-4">3.4.5</span> Lemma</h4>
+<div class="outline-text-4" id="text-3-4-5">
+<p>
+Let \(K\subset \R^n\) be a closed convex set and \(x\in \R^n \setminus K\).
+For a point \(y\) on the half-line emanating from \(x'=p_k(x)\) and containing
+\(x\) holds
+</p>
+
+<p>
+\(y' = p_K(y)=p_K(x) = x'\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgb5cbbd5" class="outline-4">
+<h4 id="orgb5cbbd5"><span class="section-number-4">3.4.6</span> Proof</h4>
+<div class="outline-text-4" id="text-3-4-6">
+<p>
+Let \(y \in [x', x]\), assume that \(y' \neq x'\). We'll try to arrive at a contradiction.
+</p>
+
+<p>
+\(\Vert x - x' \Vert = \Vert x - y \Vert + \Vert y - x'\Vert \ge \Vert x -
+    y\Vert + \Vert y - y'\Vert\) (The second part follows from the fact that \(y'\)
+is the point in \(K\) that is closest to \(y\).)
+</p>
+
+<p>
+We apply the inequality of triangle we get that \(\Vert x - x' \Vert \ge
+    \Vert x - y\Vert\). This is a contradiction.
+</p>
+
+<p>
+We do something similar when \(x\) is an element in the line segment \([y,
+    x']\). (Not exactly similar, but try to arrive at a contradiction from
+drawing some triangles and what-not.)
+</p>
+</div>
+</div>
+<div id="outline-container-org33cc67d" class="outline-4">
+<h4 id="org33cc67d"><span class="section-number-4">3.4.7</span> Lemma Busemann and Faller's lemma</h4>
+<div class="outline-text-4" id="text-3-4-7">
+<p>
+The function \(p_K\) does not increase the distance, therefore it is Lipschitz
+with constant \(1\) and is uniformly continuous. This means that \(\Vert
+    p_k(x) - p_K(y) \Vert \le \Vert x - y\Vert\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgf2f6260" class="outline-4">
+<h4 id="orgf2f6260"><span class="section-number-4">3.4.8</span> Proof</h4>
+<div class="outline-text-4" id="text-3-4-8">
+<p>
+We assume that \(x' = p_K(x) \neq y' = p_K(y)\). (We draw a diagram.)
+</p>
+
+<p>
+We kinda use principles similar to the last two theorems. I skipped writing
+the proof.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf20e7f9" class="outline-2">
+<h2 id="orgf20e7f9"><span class="section-number-2">4</span> Lecture 4 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-10-24 Wed&gt;</span></span></h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org4baea44" class="outline-3">
+<h3 id="org4baea44"><span class="section-number-3">4.1</span> Review</h3>
+<div class="outline-text-3" id="text-4-1">
+</div>
+<div id="outline-container-org5c42b7c" class="outline-4">
+<h4 id="org5c42b7c"><span class="section-number-4">4.1.1</span> Nearest point map</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
+The definition of the nearest point map for a convex set.
+</p>
+
+<p>
+Recall that we use completeness of Real numbers for the existence of the map. <sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup>
+</p>
+</div>
+</div>
+<div id="outline-container-orgbf64e7f" class="outline-4">
+<h4 id="orgbf64e7f"><span class="section-number-4">4.1.2</span> Some properties</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<p>
+The nearest point map is identity in \(K\). 
+</p>
+
+<p>
+Every point \(y\) on the half line emanating from \(x'\) containing is in the
+fiber of \(x'\) with respect to \(p_K\).
+</p>
+
+<p>
+\(f_K\) is a Lipschitz function with constant \(1\) and is hence continuous. 
+</p>
+
+<p>
+Supporting hyperplane \(H \colon H \cap K = \emptyset\), \(K\subset H^{-}\). 
+</p>
+</div>
+</div>
+<div id="outline-container-org1fad02f" class="outline-4">
+<h4 id="org1fad02f"><span class="section-number-4">4.1.3</span> Lemma</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<p>
+If \(x \in \R^n - K\), then \(H=\{y \colon \langle y, x-x'\rangle = \langle x',
+    x-x'\rangle \}\) is a supporting hyperplane of \(K\) at \(x'\).
+</p>
+
+<p>
+The lemma says that at every point outside of \(K\), we can find a supporting
+hyperplane. What we need to prove is that at every point on the boundary we
+can find a supporting hyperplane. 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org08af2c6" class="outline-3">
+<h3 id="org08af2c6"><span class="section-number-3">4.2</span> Theorem</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Let \(K\subset \R^n\) (here \(K\) is not equal to \(\R^n\) be closed convex set.
+Then \(K\) is equal to the intersection of all its supporting half-spaces. 
+</p>
+</div>
+<div id="outline-container-org5bcc763" class="outline-4">
+<h4 id="org5bcc763"><span class="section-number-4">4.2.1</span> Proof</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+Because \(K\) is not \(\R^n\), we have a point in the difference. Then there is
+at least one supporting hyperplane, and therefore a supporting half space.
+Let \(K'\) be the intersection of all of it's supporting hyperplanes of \(K\).
+It is clear that \(K\) is a subset of \(K'\). To prove the inclusion from the
+other side:
+</p>
+
+<p>
+Let \(k'\) be an element in \(K'\). Then there exists a supporting hyperplane
+\(H\) at \(x'=f_K(x)\) such that \(K \subset H^{-}\) and \(x \in inf H^{+}\). Thus
+\(H\) separates \(H\) and \(K\), and more importantly, \(x\) is not an element of
+\(K'\).<sup><a id="fnr.9" class="footref" href="#fn.9">9</a></sup>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org5a6feab" class="outline-3">
+<h3 id="org5a6feab"><span class="section-number-3">4.3</span> Theorem</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Let \(K\subset \R^n\) a closed convex set and \(x\in \partial K\). Then there
+exists a supporting hyperplane for \(K\) containing \(x\). 
+</p>
+</div>
+<div id="outline-container-org54d94f7" class="outline-4">
+<h4 id="org54d94f7"><span class="section-number-4">4.3.1</span> Proof</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+We define the boundary of \(K\) first. Let \(x\in \partial K \iff (\forall U
+    \in x \textup{ and open }) U \cap K \neq \emptyset\) and \(U\cap K^{c} \neq
+    \emptyset\) and \(x_0 \in K\).
+</p>
+
+<p>
+If \(x_0\) is a point in the boundary of \(K\), then there is a sequence \(y_n
+    \in \R^n\) such that \(x_0\) is the limit of \(y_n\).
+</p>
+
+<p>
+For every point \(x_n = f_K(y_n)\), there is a supporting hyperplane \(H_n\) at
+\(x_n\). Let \(s_n\) be a sequence of half lines emanating from \(x_n\)
+perpendicular to \(H_n\). Let \(S\) be a sphere with center at \(x_0 \in H\) of
+small radius. Then this half line will intersect \(S\) at one point. Notice
+that \(y_n\) is also an element of \(S_n\), then 
+</p>
+
+<p>
+\(x_0 = \lim f_K(y_n')\) and \(y'_{k_n}\) subsequence of \(y_n'\) converging in
+\(S, y_{k_n}' \rightarrow y_0 \in S\) and \(x_0 = \lim f_k(y_n') = \lim
+    f_K(y_{k_n}')\) and \(y_0 = lim y_k' \implies f_k(y_0) = \lim f_k(y_{k_n}')\)
+and \(x_0 = f_k(y_0)\) and \(y_0 \neq x_0\). <sup><a id="fnr.10" class="footref" href="#fn.10">10</a></sup>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org600580b" class="outline-3">
+<h3 id="org600580b"><span class="section-number-3">4.4</span> Faces and Normal Cone</h3>
+<div class="outline-text-3" id="text-4-4">
+</div>
+<div id="outline-container-org941ea88" class="outline-4">
+<h4 id="org941ea88"><span class="section-number-4">4.4.1</span> Definition</h4>
+<div class="outline-text-4" id="text-4-4-1">
+<p>
+Let \(K\subset \R^n\) be a closed convex set. A face \(F\) of \(K\) is a subset of
+\(K\) is a subset of the form \(F = K \cap H\) where \(H\) is some supporting
+hyperplane of \(K\). 
+</p>
+
+<p>
+Such a face is called a proper face while \(\emptyset\) and \(K\) are also faces
+but called non-proper. (A diagram with \(\emptyset\) and \(K\).)
+</p>
+
+<p>
+Examples: Triangles (here faces are the edges.) For a disc, then the faces
+are points on the boundary. For a cube, the faces are the faces of the cube.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf761fe4" class="outline-4">
+<h4 id="orgf761fe4"><span class="section-number-4">4.4.2</span> Lemma about convexity of face</h4>
+<div class="outline-text-4" id="text-4-4-2">
+<p>
+Every proper face of \(K\) is a closed convex set.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf4ce497" class="outline-4">
+<h4 id="orgf4ce497"><span class="section-number-4">4.4.3</span> Dimension</h4>
+<div class="outline-text-4" id="text-4-4-3">
+<p>
+If \(F\) is a face of \(K\) and \(m=\dim F\), (Let affine hull of \(K\) is \(\R^n\).)
+</p>
+<ol class="org-ol">
+<li>then \(m=0\) we call \(F\) a vertex of \(K\)</li>
+<li>If \(m=1\) we call \(F\) an edge of \(K\)</li>
+<li>If \(m=n-1\) we call \(F\) a <b>facet</b> of \(K\)</li>
+<li>If \(m=n-2\) we call \(F\) a <b>ridge</b> of \(K\).</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org5f21c24" class="outline-3">
+<h3 id="org5f21c24"><span class="section-number-3">4.5</span> Lemma</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+Let \(F_0\) be subset of \(F_1\) faces of \(K\), then \(F_0\) is a face of \(F_1\).
+</p>
+</div>
+<div id="outline-container-org389f601" class="outline-4">
+<h4 id="org389f601"><span class="section-number-4">4.5.1</span> Proof</h4>
+<div class="outline-text-4" id="text-4-5-1">
+<p>
+\(F_0\) is a face of \(K \implies\), therefore \(F_0 = K \cap H\), where \(H\) is a
+supporting hyperplane for \(K\). \(H\) supporting hyperplane for \(K\) and
+therefore for \(F_1\).
+</p>
+
+<p>
+\(F_1 \cap H \subset K \cap H \subset F_1 \cap H\)
+</p>
+
+<p>
+\(F_0 = F_1 \cap H\). 
+</p>
+</div>
+</div>
+<div id="outline-container-org7e16c81" class="outline-4">
+<h4 id="org7e16c81"><span class="section-number-4">4.5.2</span> Remark</h4>
+<div class="outline-text-4" id="text-4-5-2">
+<p>
+The converse of the lemma does not hold. \(F_2\) is a face of \(K\) and \(F_0\) is
+a face of \(F_2\) implies \(F_2\) is a face of \(K\). The last statement is not
+true. Notice that in the above proof we need both of them to be faces of
+\(A\).
+</p>
+
+<p>
+The picture: A square with a half-disc glued to the right. \(F_0\) be a vertex
+on the right side and \(F_1\) be the edge of the square containing \(F_0\). <sup><a id="fnr.11" class="footref" href="#fn.11">11</a></sup>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf51335b" class="outline-3">
+<h3 id="orgf51335b"><span class="section-number-3">4.6</span> Lemma</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+Let \(F_1, \cdots, F_k\) be faces of \(K\), then \(F=F_1\cap \cdots \cap F_k\) if a
+face of \(K\).
+</p>
+</div>
+<div id="outline-container-org05743c3" class="outline-4">
+<h4 id="org05743c3"><span class="section-number-4">4.6.1</span> Proof</h4>
+<div class="outline-text-4" id="text-4-6-1">
+<p>
+\(F_i = K \cap H_i\), where \(H_i = \{y \vert \langle y, u_i \rangle = 0\}\).
+(\(K \subset H_i^{-1}\) <sup><a id="fnr.12" class="footref" href="#fn.12">12</a></sup>) We can assume that \(0 \in F\) which is the
+intersection of all of them \(0 \in F = F_1 \cap \cdots F_k\).
+</p>
+
+<p>
+\(u=u_1+\cdots+u_k\) (we can assume without loss of generality that \(u \neq
+    0\); this can be attained by scaling one or more \(u_i\).)
+</p>
+
+<p>
+\(H=\{y\vert \langle y, u\rangle = 0\}\). will be a supporting hyperplane for
+\(K\) and \(F = K \cap H\). \(K\subset H^-\), \(y\in K\), \(\langle u, u\rangle =
+    \langle y, u_1\rangle + \cdots + \langle y, u_k\rangle \le 0 + \cdots + 0\). <sup><a id="fnr.13" class="footref" href="#fn.13">13</a></sup>
+</p>
+
+<p>
+The last statement implies that \(y\)
+</p>
+
+<p>
+\(F = K \cap H\).
+</p>
+
+<p>
+\(y\in F = F_1 \cap \cdots \cap F_k = (K\cap H_1) \cap \cdots \cap (K\cap H_k)\)
+</p>
+
+<p>
+\(\langle y, u_1 \rangle = 0, \cdots, \langle y, u_k\rangle = 0\).
+</p>
+
+<p>
+\(\langle y, u_1 + \cdots + u_k \rangle = 0\).
+</p>
+
+<p>
+\(\langle y, u \rangle = 0 \implies y \in H\). 
+</p>
+
+<p>
+\(y \in F \cap H \subset K \subset H\). 
+</p>
+
+<p>
+\(y \in K \cap H \implies y \in K\) and \(y\in H\). 
+</p>
+
+<p>
+\(\langle y, u_i \rangle \le 0\) 
+</p>
+
+<p>
+\(\langle y, u \rangle = 0 = \langle y, u_1 \rangle + \cdots + \langle y,
+    u_k\rangle\). <sup><a id="fnr.14" class="footref" href="#fn.14">14</a></sup>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9bcd92c" class="outline-3">
+<h3 id="org9bcd92c"><span class="section-number-3">4.7</span> Lemma</h3>
+<div class="outline-text-3" id="text-4-7">
+<ul class="org-ul">
+<li>Let \(F\) be a face of a closed convex set \(K\) and \(x, \tilde x\) be an element</li>
+</ul>
+<p>
+of the relative interior of \(F\). Then any supporting hyperplane of \(K\)
+containing \(x\) must contain \(\tilde x\).
+</p>
+<ul class="org-ul">
+<li>If \(F, F'\) are faces of \(K\) and \(\relint F \cap \relint F \neq \emptyset\),
+ten \(F = F'\).</li>
+</ul>
+</div>
+<div id="outline-container-orgaab6cb7" class="outline-4">
+<h4 id="orgaab6cb7"><span class="section-number-4">4.7.1</span> Proof</h4>
+<div class="outline-text-4" id="text-4-7-1">
+<p>
+\(H\) supporting for \(F\). I didn't write this. <sup><a id="fnr.15" class="footref" href="#fn.15">15</a></sup>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org7e74c75" class="outline-2">
+<h2 id="org7e74c75"><span class="section-number-2">5</span> Lecture 5 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-10-30 Tue&gt;</span></span></h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org3820805" class="outline-3">
+<h3 id="org3820805"><span class="section-number-3">5.1</span> Review</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+He did a review of stuff. 
+</p>
+
+<ol class="org-ol">
+<li>\(K\) closed convex set and \(H\) is a supporting hyperplane of \(K\). Meaning
+that \(F = K \cap H\) is a face. \(\phi_1, K\) (improper) face.</li>
+<li>\(F\) face of \(K\) \(\implies F\) closed and convex.</li>
+<li>\(F_1 \subset F_1\) faces of \(K \implies F_0\) a face of \(F_1\). Whereas the
+converse of the statement is not true. <sup><a id="fnr.16" class="footref" href="#fn.16">16</a></sup></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orge109ad6" class="outline-3">
+<h3 id="orge109ad6"><span class="section-number-3">5.2</span> Definition (Normal cone)</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Let \(K\subset \R^n\) be a closed convex set and \(x\in K\). The <b>Normal cone</b> at
+\(x\) is the set at \(x\) is the set \[N(x) = -x + p_K^{-1}(\{x\})\]
+</p>
+
+<p>
+The normal cone at \(x\) always contains \(0\). We'll draw some examples.
+</p>
+
+<ol class="org-ol">
+<li><b>A closed convex interval in \(\R\)</b>. Take a point \(x\) inside the interval.
+Then \(N(x) = 0\). This is because the set of all points such that the
+closest point is \(x\) is just \(x\).</li>
+<li>If we go at the boundary of the convex set, then the set of points that
+are closest to the point is the point and the whole half line containing
+the point. Now \(N(x)\) is \([0, \infty)\) after translation. We can make a
+similar argument for the point on the other side of the boundary.</li>
+<li><b>An interval in the plane</b>: let's say \([1, 3]\) inside \(\R^2\). Now, for
+\(2\), there is a perpendicular line that is closest to \(2\). Now, if we
+translate it, we get a line perpendicular to \(0\). Whereas, for \(3\) and
+\(0\), they would be two dimensional spaces (half spaces.) We can get one
+form another by doing orthogonal complement.</li>
+<li><b>A triangle inside plane</b>. All the points inside would give us \(0\).
+Whereas, for a point on one of the edge (other than vertex), \(N(x)\) would
+be a line perpendicular to the edge. For an edge, it would be a
+two-dimensional space.</li>
+<li><b>Remark</b>: Notice that for all these examples, we were able to partition
+the entire space using \(N(x)\). (I think the partition thing we are talking
+about is about \(p^{-1}_K\). \(N(x)\) would always contain \(0\).</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orge827f37" class="outline-3">
+<h3 id="orge827f37"><span class="section-number-3">5.3</span> Lemma</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+\(N(x)\) is a closed convex cone. It consists of \(0\) and all outer normals of
+\(K\) in \(x\). If \(x \in \inte K\), then \(N(x) = \{0\}\). 
+</p>
+</div>
+<div id="outline-container-orgaf1f872" class="outline-4">
+<h4 id="orgaf1f872"><span class="section-number-4">5.3.1</span> Proof</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<p>
+\(\lambda \ge 0, u \in N(x) \implies \lambda x \in N(x)\)
+</p>
+
+<p>
+\(u, v \in N(x) \implies u + v \in N(x)\)
+</p>
+
+<p>
+Without loss of generality, we can assume that \(x=0\). 
+</p>
+
+<p>
+\(u\in N(0) \implies u \in p^{-1}_K\) and a lemma gives us that \(\lambda v\in
+    p^{-1}_K(0)\) implies that \(\lambda u \in N(0)\).
+</p>
+
+<p>
+\(u, v \in N(0) \implies 0 = p_K(u) = p_K(v)\), \(H_u = \{x\vert \langle u, x
+    \rangle = 0\}\)
+</p>
+
+<p>
+\(K\subset H_u^{-1}\). Supporting hyperplane at \(0\) of \(K\). \(H_u = \{x \vert
+    \langle v, x\rangle = 0\}\), and \(K\subset K_v^{-1}\).
+</p>
+
+<p>
+\(x \in K, \langle u + v, x\rangle = \langle u, x\rangle + \langle v,
+    x\rangle \le 0 + 0 \le 0\).
+</p>
+
+<p>
+\(x \in H^{-1} \implies K \subset H^{-1}\).
+</p>
+
+<p>
+\(H\) is a supporting hyperplane, then \(p_{K}(u+v) = 0\).
+</p>
+
+<p>
+What we proved is that, if we take a point, the positive multiple is inside.
+We also proved that if there are two points inside, then the sum of them is
+also inside. So it's like a cone. What about closed?
+</p>
+
+<p>
+\(N(x) = -x + p^{-1}(\{x\}\). Now, because \(\{x\}\), is closed and \(p_K\) is
+continuous, then inverse image is closed. Because the translation is an
+isometry, we are done.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgae02ca3" class="outline-3">
+<h3 id="orgae02ca3"><span class="section-number-3">5.4</span> Definition (Dual cone)</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+Let \(G\) be a cone, then \(\sigma = \{u \vert \langle \sigma, u\rangle \ge 0 \}\)
+is called the <b>dual cone</b>. 
+</p>
+</div>
+</div>
+<div id="outline-container-orgdf92b24" class="outline-3">
+<h3 id="orgdf92b24"><span class="section-number-3">5.5</span> Lemma</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+If \(\sigma\) is a cone with appex \(0\), then \(N_\sigma(0) = -\sigma\).<sup><a id="fnr.17" class="footref" href="#fn.17">17</a></sup>
+</p>
+</div>
+</div>
+<div id="outline-container-org6909514" class="outline-3">
+<h3 id="org6909514"><span class="section-number-3">5.6</span> Lemma</h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+Let \(F\) be a face of a closed convex set of \(K\) and \(x, \tilde{x} \in \relint
+   F\), then \(N(x) = N(\tilde x)\).
+</p>
+</div>
+<div id="outline-container-org8b3946e" class="outline-4">
+<h4 id="org8b3946e"><span class="section-number-4">5.6.1</span> <span class="todo TODO">TODO</span> Proof</h4>
+<div class="outline-text-4" id="text-5-6-1">
+<p>
+The idea is that if there are two points in the relative interior of a face,
+then the supporting hyperplane for these points are the same. We look at all
+the normals at \(x\) and \(\tilde x\). <sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfbf2ac6" class="outline-3">
+<h3 id="orgfbf2ac6"><span class="section-number-3">5.7</span> A random story</h3>
+<div class="outline-text-3" id="text-5-7">
+<p>
+\(P \rightarrow \{F \colon F \textup{ a face of P}\), for every face, we can
+talk about \(N(F)\) instead of a point in the relative interior. These two
+sets, we put inclusion as a relation, these are anti-isomorphic <sup><a id="fnr.19" class="footref" href="#fn.19">19</a></sup> These
+have some group structure and later can be used to construct affine Toric
+variety. <sup><a id="fnr.20" class="footref" href="#fn.20">20</a></sup>
+</p>
+</div>
+</div>
+<div id="outline-container-orgfdc10ee" class="outline-3">
+<h3 id="orgfdc10ee"><span class="section-number-3">5.8</span> Definition</h3>
+<div class="outline-text-3" id="text-5-8">
+<p>
+If \(F\) is a face of a closed convex set \(K\) and \(x\in \relint F\), then $N(x)
+is denoted by \(N(F)\) and is called the cone of normals of \(K\) in \(F\). <sup><a id="fnr.21" class="footref" href="#fn.21">21</a></sup>
+</p>
+</div>
+</div>
+<div id="outline-container-orgfcc64f9" class="outline-3">
+<h3 id="orgfcc64f9"><span class="section-number-3">5.9</span> Theorem</h3>
+<div class="outline-text-3" id="text-5-9">
+<p>
+Let \(K\) be a convex body in \(\R^n\) and \(x(F)\) are of the relative interior
+points in \(F \neq \emptyset\) or \(K\). Then \(\{\relint N(x(F)) \vert F \text{
+   face of } K\} = \{ \relint N(F) \vert F\textup{ face of } K \}\) is a
+partition of \(\R^n\).
+</p>
+</div>
+<div id="outline-container-org4df455d" class="outline-4">
+<h4 id="org4df455d"><span class="section-number-4">5.9.1</span> <span class="todo TODO">TODO</span> Proof</h4>
+<div class="outline-text-4" id="text-5-9-1">
+<p>
+Since \(K\) is bounded, there exists \(\alpha\) non-negative, such that \(K\) is a
+subset of \(H^{-1}(u, \alpha)\) where \[H(u, \alpha) = \{x \vert \langle x, u
+    \rangle =\alpha\}\]
+</p>
+
+<p>
+Let's take the intersection \(\cap_{K \subset H^{-1}}(u, \alpha) H^{-1}
+    H^{-1}(u, \alpha)\)
+</p>
+
+<p>
+There was a nice diagram. 
+</p>
+</div>
+</div>
+<div id="outline-container-org8342a9d" class="outline-4">
+<h4 id="org8342a9d"><span class="section-number-4">5.9.2</span> Random stuff</h4>
+<div class="outline-text-4" id="text-5-9-2">
+<p>
+\(\forall u \in \R^n - \{0\}\), there exists a face \(F\) of \(K\), \(u\in N(F)\)
+and \(0 \in N(K)\).
+</p>
+
+<p>
+\(x \in \relint F\), and \(u\) is an outer normal of \(x\), then \(u\in \relint
+    N(F)\).<sup><a id="fnr.22" class="footref" href="#fn.22">22</a></sup>
+</p>
+
+<p>
+He did an example with tetrahedra.
+</p>
+
+<p>
+\(u \in \relint N(F_1) \cap \relint N(F_2)\), \(u\ in \relint x(F_1) \cap
+    \relint x(F_2)\). This means that if we take \(u\) and add a point \(x(F_1)\),
+\(p_K(u + x(F_1)) = x(F_1)\). This means that \(p_K(u + x(F_2)) = x(F_2)\)
+</p>
+
+<p>
+(I missed parts of this argument.) We used boundedness of the convex body.
+If it is unbounded, the family of normal cones do not cover.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7517419" class="outline-3">
+<h3 id="org7517419"><span class="section-number-3">5.10</span> Definition (Normal fan)</h3>
+<div class="outline-text-3" id="text-5-10">
+<p>
+The family \(N(F)\) of \(K\) is called the normal fan of \(K\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgf79ce06" class="outline-3">
+<h3 id="orgf79ce06"><span class="section-number-3">5.11</span> Support and distance functionn</h3>
+<div class="outline-text-3" id="text-5-11">
+</div>
+<div id="outline-container-orgf06a8ea" class="outline-4">
+<h4 id="orgf06a8ea"><span class="section-number-4">5.11.1</span> Definition (support function)</h4>
+<div class="outline-text-4" id="text-5-11-1">
+<p>
+Let \(K\) be a non-empty convex body. The function \(h_K\) that maps \(\R^n
+    \rightarrow \R\), \(h_K(x) = \sup_{x\in K} \langle u, x\rangle\) is the
+<b>support function</b> of \(K\).<sup><a id="fnr.23" class="footref" href="#fn.23">23</a></sup>
+</p>
+
+<p>
+We can also say it is the supremum over a fixed \(x_0\).
+</p>
+
+<p>
+There was a diagram
+</p>
+</div>
+</div>
+<div id="outline-container-org30887ab" class="outline-4">
+<h4 id="org30887ab"><span class="section-number-4">5.11.2</span> Question?</h4>
+<div class="outline-text-4" id="text-5-11-2">
+<p>
+Given a ball, what is the normal fan of the space?
+</p>
+
+<p>
+If we take an interior point, then we have \(0\). So we should go to the
+boundary. But each point has a supporting hyperplane. Which means, that the
+normal fan is all the half lines. The normal fan is a sphere. The normal fan
+can be ugly when we have smooth convex body. But for polytopes, it's much
+nicer.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org2b71d7d" class="outline-2">
+<h2 id="org2b71d7d"><span class="section-number-2">6</span> Lecture 6 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-06 Tue&gt;</span></span></h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org73384fb" class="outline-3">
+<h3 id="org73384fb"><span class="section-number-3">6.1</span> Support and distance function</h3>
+<div class="outline-text-3" id="text-6-1">
+</div>
+<div id="outline-container-org5246aed" class="outline-4">
+<h4 id="org5246aed"><span class="section-number-4">6.1.1</span> Definition</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<p>
+Let \(K \subset \R^n\) be a convex body. The support function of \(K\) is
+\(h_K\colon \R^n \rightarrow \R\), \(h_K(u)= \sup_{x\in K} \langle u,
+    x\rangle\)
+</p>
+</div>
+</div>
+<div id="outline-container-org9e09da4" class="outline-4">
+<h4 id="org9e09da4"><span class="section-number-4">6.1.2</span> Lemma</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+\(h_{K+a}(u) = h_K(u) + \langle u, a \rangle\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgfd6dd91" class="outline-4">
+<h4 id="orgfd6dd91"><span class="section-number-4">6.1.3</span> Proof</h4>
+<div class="outline-text-4" id="text-6-1-3">
+<p>
+\(K+a = \{x + a\vert x \in K\}\)
+</p>
+
+<p>
+\(h_{K+a}(u) = \sup_{x \in K} \langle u, x+a\rangle \sup_{x\in K} \langle u x \rangle + \langle u, a\rangle\)
+</p>
+
+<p>
+\(h_[p, q](u) = ?\), where \([p, q]\in \R^1\).
+</p>
+</div>
+</div>
+<div id="outline-container-orge18d715" class="outline-4">
+<h4 id="orge18d715"><span class="section-number-4">6.1.4</span> Lemma</h4>
+<div class="outline-text-4" id="text-6-1-4">
+<p>
+Let \(K\subset \R^n\) be a convex body and \(u+0\), \(x_0 \in \partial K\), there
+is a supporting hyperplane at \(x_0\), \(H_{x_0} = \{x \vert \langle x,
+    u\rangle = \langle x_0, u\rangle \}\) where \(u\in N(x_0)\)
+</p>
+<div class="org-src-container">
+<pre class="src src-artist">----------------------------X---------------------------
+                           / \
+                         -/ x \
+                        /      \        
+                       /        \       
+                      /          \-     
+                    -/             \    
+                   /                \   
+                  /                  \  
+                -/                    \ 
+               /                       \
+              /                         \
+</pre>
+</div>
+<ol class="org-ol">
+<li>The hyperplane \(H_{u} = \{\langle x, u \rangle = h_K(u)\}\)</li>
+<li>Every support hyperplane of \(K\) has the above form.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org5a23f3c" class="outline-4">
+<h4 id="org5a23f3c"><span class="section-number-4">6.1.5</span> Proof</h4>
+<div class="outline-text-4" id="text-6-1-5">
+<p>
+\(h_K(u) = \sup\langle x, u\rangle = \langle x_0, u\rangle\) for some \(x_0 \in
+    K\) (because of compactness <sup><a id="fnr.24" class="footref" href="#fn.24">24</a></sup>)
+</p>
+
+<p>
+\(x_0 \in H_{u} \cap K\). Let \(y\in K\), then \(\langle u, u \rangle \le \sup
+    \langle x, u \rangle= h_K(u)\)
+</p>
+
+<p>
+\(y \in H^{-1}(u)\), thus \(K \subset H^{-1}\).
+</p>
+
+<p>
+\(H\) is a supporting hyperplane. Then it cuts \(K\), \(x_0 \in K \cap H\), \(H
+    =\{x \vert \langle x, u\rangle = \langle x_0, u \rangle \}\) where \(u \in
+    N(x_0)\). \(N \subset H^{-1}\)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org6786e41" class="outline-3">
+<h3 id="org6786e41"><span class="section-number-3">6.2</span> Convex function</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Let \(f \colon \R^n \rightarrow \R\), we say that \(f\) is convex if for every
+\(x, y \in \R^n\) and \(0 \le \lambda \le 1\) holds that \(f(\lambda x +
+   (1-\lambda)y) \le \lambda f(x) + (1-\lambda)f(y)\). If \(L \subset \R^n\) is an
+affine subspace, then \(f_L\) is also convex.
+</p>
+</div>
+<div id="outline-container-org48f5607" class="outline-4">
+<h4 id="org48f5607"><span class="section-number-4">6.2.1</span> Definition</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<p>
+The function \(f\colon \R^n \rightarrow \R\) is <b>positively homogeneous</b> if
+for every \(x\in \R^n\) and \(\lambda \ge 0\) the following holds: \(f(\lambda x)
+    = \lambda f(x)\)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1780f73" class="outline-3">
+<h3 id="org1780f73"><span class="section-number-3">6.3</span> Lemma</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Let \(f\) be positively homogeneous. Then \(f\) is convex if and only if for all
+\(x, y, \in \R^n\) the following holds:
+</p>
+
+<p>
+\(f(x + y) \le f(x) + f(y)\)
+</p>
+</div>
+<div id="outline-container-orgb29e4e1" class="outline-4">
+<h4 id="orgb29e4e1"><span class="section-number-4">6.3.1</span> <span class="todo TODO">TODO</span> Proof</h4>
+<div class="outline-text-4" id="text-6-3-1">
+<p>
+Let \(f\) be convex
+$f(x)/2 + f(y)/2 &le; f((x+y)/2) &le; $
+</p>
+
+<p>
+\(f\) satisfies the property, to show that \(f\) is convex.
+</p>
+
+<p>
+\(f(\lambda x + (1- \lambda)y) \le f(\lambda x) + f((1-\lambda)y) = \lambda
+    f(x) + (1-\lambda) f(y)\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4e59f8d" class="outline-3">
+<h3 id="org4e59f8d"><span class="section-number-3">6.4</span> Lemma</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+A function \(f\colon \R^n \rightarrow \R\) is convex if and only if for all
+\(x_1, \cdots, x_n\) and for all \(\lambda_1, \cdots, \lambda_n\) non-negative
+such that \(\lambda_0 + \cdots + \lambda_m = 1\) the following holds
+</p>
+
+<p>
+\(f(\lambda_0 x_0 + \cdots \lambda_m) \le \lambda_0 f(x_0) + \cdots + \lambda_m
+   f(x_m)\)
+</p>
+</div>
+<div id="outline-container-orga7a343e" class="outline-4">
+<h4 id="orga7a343e"><span class="section-number-4">6.4.1</span> Proof</h4>
+<div class="outline-text-4" id="text-6-4-1">
+<p>
+\(\Leftarrow\), we put \(x_1, \cdots, x_m = y\), it follows trivially now.
+</p>
+
+<p>
+\(\implies\), induction on \(m\). Assume that the condition holds with \(n-1\) on
+every affine subspace of \(\R^n\) of dimension \(n-1\), i.e., \(f(\lambda_1 x_0 +
+    \cdots + \lambda_{n-1}x_{n-1}) \le \lambda_0 f(x_0) + \cdots + \lambda_{n-1}
+    f(x_{n-1})\). 
+</p>
+
+<p>
+If \(\lambda_0\) is zero, we are done.
+</p>
+
+<p>
+\(f(\lambda_0 x_0 + \lambda_1 x_1+\cdots + \lambda_n x_m) = f(\lambda_0x_0 +
+    \lambda(1-\lambda_0)(\frac{\lambda_1}{(1-\lambda_0)} + \cdots + ? x_m)) \le
+    \lambda_0 f(x_0) + (1-\lambda_0) f(\frac{\lambda_1}{(1-\lambda_0)} x_1 +
+    \cdots + \frac{\lambda_m}{(1-\lambda_0} f(x_m))\) We are done.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org5fabf30" class="outline-3">
+<h3 id="org5fabf30"><span class="section-number-3">6.5</span> Lemma (Convex functions are continuous)</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+Every convex function \(f\colon \R^n \rightarrow \R\) is continuous
+</p>
+</div>
+<div id="outline-container-orgc209188" class="outline-4">
+<h4 id="orgc209188"><span class="section-number-4">6.5.1</span> <span class="todo TODO">TODO</span> Proof</h4>
+<div class="outline-text-4" id="text-6-5-1">
+<p>
+\(x_0 \in \R^n\), \(T = \conv \{x_0, \cdots, x_{m+1}\}\) regular simplex, such that 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-artist">
+             /|
+            / |-\
+           /  |  \
+          /   |   -\
+         /    |     \
+        /     |      -\
+       /      |        \
+      /       |         \
+     /       -+-         -\
+    /     --/   \---       \
+   /    -/          \---    -\
+  /  --/                \---  \
+ /--/                       \---\
+-/------------------------------\-
+</pre>
+</div>
+<p>
+\(\Vert x_0 - x_1 \Vert = \cdots = \Vert x_0 - x_{n+1}\Vert\)
+</p>
+
+<p>
+\(u\in U_{\partial (x_0)} = \{x \vert x - x_0\Vert < \partial \} \in T\)
+</p>
+
+<p>
+\(x\) belongs to one of the simplex \(\{x_0, x_1, \cdots, \tilde{x_i}, \cdots,
+    x_{n+1}\}\), \(x\in \conv \{x_0, x_1, \cdots, x_m\}\) and \(x = \lambda_0 x_1 +
+    \cdots + \lambda_m x_m\) and \(0\le \lambda_1, \cdots, \lambda_m < \delta <
+    1\).
+</p>
+
+<p>
+\(\vert f(x) - f(x_0) \vert \le \vert \lambda_0 f(x_0) + \cdots +
+    \lambda_mf(x_m) - f(x_0)\vert = \vert x_1 \vert f(x_0) - f(x_0)\vert +
+    \cdots + \lambda_n (f(x_n) -f(x_0)\vert\)
+</p>
+
+<p>
+\(f(x) > 0\) assume \(\le \lambda \lambda_1 \vert f(x_1)- f(x_0) \vert +
+    \cdots + \lambda_m \vert f(x_n) - f(x_0) \vert \le (\lambda_1 + \cdots
+    \lambda_n) M \le n \delta M < n\delta (M+1)\)
+</p>
+
+<p>
+We can call the last value as \(\varepsilon\) and for given \(\varepsilon > 0\),
+we can choose \(\delta\). Hence the function is continuous.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org870a97a" class="outline-3">
+<h3 id="org870a97a"><span class="section-number-3">6.6</span> Lemma</h3>
+<div class="outline-text-3" id="text-6-6">
+<p>
+\(f \colon \R^n \rightarrow \R\) is convex if and only if \(T^{+}(f) =
+   \{(x, \zeta) \vert x \in \R^n, \zeta \in \R, f(x) \le \zeta \}\) is a closed
+convex <sup><a id="fnr.25" class="footref" href="#fn.25">25</a></sup>
+</p>
+</div>
+<div id="outline-container-orgcba63c0" class="outline-4">
+<h4 id="orgcba63c0"><span class="section-number-4">6.6.1</span> Examples</h4>
+<div class="outline-text-4" id="text-6-6-1">
+<p>
+\(y = x^2\) is a convex function.
+</p>
+</div>
+</div>
+<div id="outline-container-org236ca3e" class="outline-4">
+<h4 id="org236ca3e"><span class="section-number-4">6.6.2</span> <span class="todo TODO">TODO</span> Proof</h4>
+<div class="outline-text-4" id="text-6-6-2">
+<p>
+\(\implies f\) is convex
+</p>
+
+<p>
+\((x, \zeta), (y, \eta) \in T^{+}(f) \implies \zeta \ge f(x), \eta \ge f(y)\),
+\(\lambda(x, \zeta) + (1-\lambda)(y, \eta) = (\lambda x + (1-\lambda)y,
+    \lambda \zeta + (1-\lambda) \eta)\), \(f(\lambda x + (1-\lambda)y) \le \lambda
+    \zeta + (1-\lambda) \eta\), is an element in the inverse.
+</p>
+
+<p>
+\(\Leftarrow\) \(T^{+}(f)\) is convex and closed set in \(\R^{n+1}\)
+</p>
+
+<p>
+\(f(\lambda x + \cdots + (1-\lambda)y)\)
+</p>
+
+<p>
+\((x, f(x)) \in T^{+}(f)\) and similarly \((y, f(y)) \in T^{+}(f)\) these
+implies that \(\lambda(x, f(x)) + (1-\lambda)(y, f(y)) \in T^{+}(f)\) this is
+equal to \((\lambda x + (1-\lambda y, \lambda f(x) + (1-\lambda) f(y)\), then
+\(f(\lambda x + (1-\lambda) y) \le \lambda f(x) + (1-\lambda) f(y)\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org29fd587" class="outline-3">
+<h3 id="org29fd587"><span class="section-number-3">6.7</span> Lemma</h3>
+<div class="outline-text-3" id="text-6-7">
+<p>
+Let \(f\in \R^n \rightarrow \R\) be positively homogeneous. Then \(f\) is convex
+if and only if \(T^{+}(f)\) is a convex closed cone.
+</p>
+</div>
+<div id="outline-container-orga0891b7" class="outline-4">
+<h4 id="orga0891b7"><span class="section-number-4">6.7.1</span> <span class="todo TODO">TODO</span> Proof</h4>
+<div class="outline-text-4" id="text-6-7-1">
+<p>
+\(f\) is convex.
+</p>
+
+<p>
+I didn't write this.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org64042c9" class="outline-3">
+<h3 id="org64042c9"><span class="section-number-3">6.8</span> Remark</h3>
+<div class="outline-text-3" id="text-6-8">
+<p>
+Domain should not be restricted? 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7f49686" class="outline-2">
+<h2 id="org7f49686"><span class="section-number-2">7</span> Lecture 7 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-07 Wed&gt;</span></span></h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org3fcc9c1" class="outline-3">
+<h3 id="org3fcc9c1"><span class="section-number-3">7.1</span> Support and distance function (Review)</h3>
+<div class="outline-text-3" id="text-7-1">
+</div>
+<div id="outline-container-orgc3bd473" class="outline-4">
+<h4 id="orgc3bd473"><span class="section-number-4">7.1.1</span> Definition</h4>
+<div class="outline-text-4" id="text-7-1-1">
+<p>
+\(K \subset \R^n\) non-empty convex body, we define the supoort function
+\(h_K \colon \R^n \rightarrow \R\), \(h_K(x) = \sup_{x\in K} \langle x, u \rangle\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgadbed90" class="outline-4">
+<h4 id="orgadbed90"><span class="section-number-4">7.1.2</span> Lemma</h4>
+<div class="outline-text-4" id="text-7-1-2">
+<p>
+\(H_K(u) = \{x \in \R^n \vert \langle x , u \rangle = h_K(u)\}\) is a support
+hyperplane for \(K\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgfb67249" class="outline-4">
+<h4 id="orgfb67249"><span class="section-number-4">7.1.3</span> Definition</h4>
+<div class="outline-text-4" id="text-7-1-3">
+<p>
+\(f\colon \R^n \rightarrow \R\) is convex if for all \(\lambda \in [0, 1]\), and
+for all \(x, y, \in \R^n\), \(f(\lambda x + (1-\lambda)y) \le \lambda f(x) +
+    (1-\lambda)f(y)\) positive homogeneous if \(\forall \lambda \ge 0\) and
+\(\forall x \in \R^n\), \(f(\lambda x) = \lambda f(x)\)
+</p>
+</div>
+</div>
+<div id="outline-container-org78049df" class="outline-4">
+<h4 id="org78049df"><span class="section-number-4">7.1.4</span> Lemma</h4>
+<div class="outline-text-4" id="text-7-1-4">
+<p>
+\(f\colon \R^n \rightarrow \R\) positive homogeneous
+</p>
+
+<p>
+\(f\) is convex \(\iff\) \(\forall x, y, \in \R^n\), \(f(x+y) \le f(x) + f(y)\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgf1b28db" class="outline-4">
+<h4 id="orgf1b28db"><span class="section-number-4">7.1.5</span> Lemma</h4>
+<div class="outline-text-4" id="text-7-1-5">
+<ol class="org-ol">
+<li>Every convex function is continuous</li>
+<li><p>
+\(f\colon \R^n \rightarrow \R\) is convex \(\iff\), \(T^{-1}(f) = \{(x, \zeta)
+       \vert \R^n \times \R \vert f(x) \le \zeta\}\) is convex
+</p>
+
+<p>
+\(f\) is convex \(\iff\) \(T^{+}(f)\) is closed convex cone in \(\R^{n+1}\).
+</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org1533e19" class="outline-3">
+<h3 id="org1533e19"><span class="section-number-3">7.2</span> Lemma</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+A support function is positive homogenous and convex.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org860b256"></a>Proof<br />
+<div class="outline-text-5" id="text-7-2-0-1">
+<ol class="org-ol">
+<li>\(h_k(\lambda u) = \sup \langle x, \lambda u\rangle = \sup_{x \in K} \lambda
+        \langle x, u \rangle = \lambda \sup \langle x, u \rangle = \lambda h_K(u)\)</li>
+<li><p>
+\(x \in K \colon \langle x, u\rangle \le \sup_{x\in K} \langle x,
+        u\rangle = h_K(u)\). \(\langle x, v \rangle \le \sup_{x\in K} \langle x,
+        v\rangle = h_K(v)\)
+</p>
+
+<p>
+Now \(\langle x, u + v\rangle \le h_K(u) + h_K(v)\), \(\implies\) \(\sup_{x
+        \in K}\langle x, u+v\rangle \le h_K(u) + h_K(v)\).
+</p>
+
+<p>
+\(h_K(u+v) \le h_K(u) + h_K(v)\), so \(h_K\) is convex.
+</p></li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org9373641" class="outline-3">
+<h3 id="org9373641"><span class="section-number-3">7.3</span> Lemma (linearity of \(h_K\))</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+\(h_K\) is linear on all elements of \(\sum(K)\) (normal cone.)
+</p>
+</div>
+<div id="outline-container-orgff6f182" class="outline-4">
+<h4 id="orgff6f182"><span class="section-number-4">7.3.1</span> Proof</h4>
+<div class="outline-text-4" id="text-7-3-1">
+<p>
+\(u \in N(x_0)\), then \(h_K(u)\), \(H_K(u) = \{x \vert \langle x, u \rangle =
+    h_k(u)\}\)
+</p>
+<div class="org-src-container">
+<pre class="src src-artist">   \                 /-
+    -\             /-
+      -\         /-
+        -\     /-
+          -\ /-
+           /o-
+         -/   \-
+       -/       \-
+     -/           \-
+   -/               \-
+ -/                   \-
+/                       X
+ --         K         /-
+   \-                /
+     \--           /-
+        \-       /-
+          \-    /
+            \-/-
+             /
+</pre>
+</div>
+<p>
+So \(h_K\vert_{N(x_0)}\) is the scalar product \(\langle \cdot, x_0\rangle\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org68da9e9" class="outline-3">
+<h3 id="org68da9e9"><span class="section-number-3">7.4</span> Definition</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+Let \(K\) be a convex body in \(\R^n\) and \(0\) is an element of the interior of
+\(K\). (So the dimension of the convex body is \(n\), i.e., the body is full
+dimensional.)
+</p>
+
+<p>
+\(d_K\colon \R^n \rightarrow \R\) is defined as follows: \(d_K(\lambda \bar{x})
+   = \lambda\) for \(\bar{x}\) element of the boundary of \(K\). (When the body is
+symmetric, then one can define a norm.) Here \(\lambda > 0\).
+</p>
+</div>
+</div>
+<div id="outline-container-org6a4fb65" class="outline-3">
+<h3 id="org6a4fb65"><span class="section-number-3">7.5</span> Lemma</h3>
+<div class="outline-text-3" id="text-7-5">
+<p>
+Let \(K\) be an n-dimensional convex body in \(\R^n\), 
+</p>
+
+<ol class="org-ol">
+<li>A line \(g\) intersecting the boundary of \(K\) in three different points is
+contained in a support hyperplane of \(K\), in particular, \(G \cap \inte K\)
+is empty.<sup><a id="fnr.26" class="footref" href="#fn.26">26</a></sup></li>
+<li><p>
+Any ray emanating from an interior point of \(K\) intersects \(\partial K\) at
+exactly one point.
+</p>
+
+<p>
+Here \(A, B, C\) are points in the interior of the boundary and \(B\) is
+inside the interior of \([A, C]\).
+</p>
+
+<p>
+\(H\) be a supporting hyperplane through \(B\), and assume that \(A, C \notin
+      H\), also no other point of \(g\) is in \(H\). Thus \(H\) separates \(A\) and \(C\),
+contradiction.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-artist">                 --
+                |  \-
+                /    \-
+               /       \-       
+              /          \-                                       /-/
+            A|             \-  C                        C     /----/
+------------o/---------------\---------------------------o/-----g/
+            /                  \-                     /---      /
+           /                     \-               /---        -/
+          |                        \-         /---           /
+          /                          \-   /---              /
+         ---\                          ---                -/
+             ------\                                     /
+                    ------\                            -/
+                           -----\                     /
+                                 ------\             /
+                                        ------\    -/
+                                               ----
+</pre>
+</div>
+<p>
+A ray can be thought of as a \(1\) dimensional half space.
+</p>
+
+<p>
+\([g_0, g_1] = g\cap K\), a convex body in \(\R^1\).
+</p></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org70c59fb" class="outline-3">
+<h3 id="org70c59fb"><span class="section-number-3">7.6</span> Lemma</h3>
+<div class="outline-text-3" id="text-7-6">
+<p>
+\(d_K\) is positive homogeneous and convex.<sup><a id="fnr.27" class="footref" href="#fn.27">27</a></sup>
+</p>
+</div>
+<div id="outline-container-org84efb01" class="outline-4">
+<h4 id="org84efb01"><span class="section-number-4">7.6.1</span> Proof</h4>
+<div class="outline-text-4" id="text-7-6-1">
+<p>
+It is clear that the function is positive homogenous.
+</p>
+
+<p>
+<b>Convexity</b>: We are going to use one of the equivalences on convexity, i.e.,
+ \(f(x +y ) \le f(x) + f(y)\).
+</p>
+
+<p>
+\(x = \lambda \bar{x}\) and \(y = \mu \bar{y}\). If \(x\in K\), then \(d_K(x) \le
+     1\).
+</p>
+
+<p>
+\(x = \lambda \bar{x}\) and \(y = \mu \bar{y}\).
+</p>
+
+<p>
+\(\frac{\lambda}{\lambda + \mu}\bar{x} + \frac{\mu}{\lambda + \mu} \bar{y}
+     \in K \implies\) \(1 \ge d_K(\frac{\lambda}{\lambda + \mu}\bar{x} +
+     \frac{\mu}{\lambda + \mu} \bar{y}) = d_K(\frac{\lambda}{\lambda +
+     \mu}{x}/\mu + \frac{\mu}{\lambda + \mu} {y}/mu) =
+     d_K(\frac1{\mu+\lambda}(x+y)) = \frac{1}{\lambda+\mu} d_K(x+y)\).
+</p>
+
+<p>
+\(d_K(x+y) \le \lambda + \mu = d_k(x) + d_k(y)\).<sup><a id="fnr.28" class="footref" href="#fn.28">28</a></sup>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdd3faa8" class="outline-3">
+<h3 id="orgdd3faa8"><span class="section-number-3">7.7</span> Definition (Centrally symmetric)</h3>
+<div class="outline-text-3" id="text-7-7">
+<p>
+A convex body \(K\) in \(\R^n\) is said to be <b>centrally symmetric</b> if there
+exists a point in \(K\) such that \(K = \rho(K)\) where \(\rho\) is the central
+symmetry with respect to \(c\).
+</p>
+
+<p>
+Defining \(\rho\)? With respect to \(c\), \(\rho(x) = 2c - x\).
+</p>
+
+<p>
+Examples:
+</p>
+<ol class="org-ol">
+<li>Point.</li>
+<li>Disc</li>
+<li>Cube</li>
+<li>Octahedron. Cross polytope? In \(\R^n\), we have a standard basis \((e_1,
+      \cdots, e_n)\). We take \(\{e_1, \cdots, e_n\}\). The convex hull \(\{e_1,
+      \cdots, e_n, -e_1, \cdots, -e_n\}\) is a cross polytope. A three
+dimensional cross polytope is an Octahedron.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org673a943" class="outline-3">
+<h3 id="org673a943"><span class="section-number-3">7.8</span> Theorem</h3>
+<div class="outline-text-3" id="text-7-8">
+<p>
+Let \(K\) be a centrally symmetric convex body with \(0\in \inte K\), as its
+center of reflection. Then \(d_K\) defines a norm in \(\R^n\) satisfying for all
+\(\lambda \in \R\) and \(x, y \in \R^n\)
+</p>
+<ol class="org-ol">
+<li>\(\Vert x \Vert = 0 \iff x =0\)</li>
+<li>\(\Vert \lambda x \Vert = \vert \lambda \vert \Vert x \Vert\)</li>
+<li>\(\Vert x +y \Vert \le \Vert x \Vert + \Vert y\Vert\)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org021b759" class="outline-3">
+<h3 id="org021b759"><span class="section-number-3">7.9</span> Example</h3>
+<div class="outline-text-3" id="text-7-9">
+<ol class="org-ol">
+<li><b>Maximum norm</b> in \(\R^2\): \(\Vert (x_1, x_2)\Vert =- \max \{\vert x_1\vert,
+      \vert x_2 \vert \} = d_K(x_1, x_2)\). What is the convex body that induces
+this norm? A square (with the usual orientation.)</li>
+<li><b>Manhattan norm</b>: \(\Vert(x_1, x_2)\Vert = \vert x_1 \vert + \vert x_2
+      \vert\). The convex body for this one would be a square (actually a cross
+polytope; the slanted square.)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgbd766a8" class="outline-3">
+<h3 id="orgbd766a8"><span class="section-number-3">7.10</span> Polar bodies</h3>
+<div class="outline-text-3" id="text-7-10">
+<p>
+Let \(K\) be a convex body in \(\R^n\) with \(0 \in \inte K\). For \(u \neq 0\), let
+</p>
+
+<p>
+\[H_u^{-1} = \{x \in \R^n \vert \langle x, u \rangle \le 1\} = \cap_{x\in
+   \partial K} H^{-1}_u\]
+</p>
+
+<p>
+In particular, \(H^{-1}_0= \R^m\). The polar body of \(K\) is \(K^{*} = \cap
+   H^{-1}_u\).
+</p>
+</div>
+</div>
+<div id="outline-container-org40c27ed" class="outline-3">
+<h3 id="org40c27ed"><span class="section-number-3">7.11</span> Theorem</h3>
+<div class="outline-text-3" id="text-7-11">
+<p>
+Let \(K\) be a convex body with \(0 \in \inte K\). Then \(K^{**} = K\)
+</p>
+</div>
+<div id="outline-container-org0a6a7c3" class="outline-4">
+<h4 id="org0a6a7c3"><span class="section-number-4">7.11.1</span> Proof</h4>
+<div class="outline-text-4" id="text-7-11-1">
+<p>
+\(K^{*} = \cap H^{-1}_u = \cap_{u \in K} \{x \vert \langle x, u \le 1 \} =
+    \{x \vert \forall x \in K, \langle x, u \rangle \le 1\}\)
+</p>
+
+<p>
+\(K^{*} = \{x \vert \langle x, K \rangle \le 1\}\)
+</p>
+
+<p>
+\(K^{**} = \{y \vert \langle y, K^{*} \rangle \le 1\}\)
+</p>
+
+<p>
+\(y \in K \implies \forall x \in K^*, \langle x, y \rangle \le 1\)
+</p>
+
+<p>
+\(\langle K, y^{*} \le 1 \implies \langle K^{*}, y\rangle \le 1 \implies y
+    \in K^{**}\), \(K \subset K^{**}\).
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbee5a24" class="outline-2">
+<h2 id="orgbee5a24"><span class="section-number-2">8</span> Lecture 8 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-13 Tue&gt;</span></span></h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org1794e11" class="outline-3">
+<h3 id="org1794e11"><span class="section-number-3">8.1</span> Polar Body</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+Let \(K\) be a convex body and \(0\in \inte K \subset \R^n\). For every \(u\in
+   \R^n - \{0\}\), we define \(H_u^{-} = \{x \vert \langle x, u \rangle \le 1\}\)
+</p>
+
+<p>
+Remember that \(H_K(u) = \{x \vert \langle x, u \rangle = h_K(u)\}\) is a
+support hyperplane in the direction \(u\) of the convex body.
+</p>
+
+<p>
+The polar body \(K^{*}\) is the intersection \(\cap H^{-1}_u\), when \(u\) is
+element of \(K\). This is the same as \(\cap_{x\in \partial K} H_u^{-1}\). The
+idea is that for \(m>1\), it is easy to see that \(H^{-1}_{mu} \subset H^{-1}_u\)
+</p>
+</div>
+</div>
+<div id="outline-container-org1e2df7c" class="outline-3">
+<h3 id="org1e2df7c"><span class="section-number-3">8.2</span> Theorem</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+Let \(K\) be a convex body in \(\R^n\) such that \(0 \in \inte K\). Then \(K^{**} =
+   K\).
+</p>
+</div>
+<div id="outline-container-org69848e7" class="outline-4">
+<h4 id="org69848e7"><span class="section-number-4">8.2.1</span> Proof</h4>
+<div class="outline-text-4" id="text-8-2-1">
+<p>
+We use the notation \(\{x \vert \langle x, K \rangle \le 1\}\) to denote
+\(K^{*}\). Similarly \(\{x \vert \langle x, K^{*} \rangle \le 1 \}\) to denote
+\(K^{**}\).
+</p>
+<ol class="org-ol">
+<li>\(y\in K\), from definition of \(K^{*}\), it follows that \(\forall x \in
+       K^{*} \vert \langle x, y \rangle \le 1 \implies \langle K^{*}, y\rangle
+       \le 1/2\) implies that \(y \in K^{**}\).</li>
+<li><p>
+\(x \in K^{**} - K\), \(x' = p_K(x)\), \(u = \frac{x - x'}{\langle x', x -
+       x'\rangle}\), then \(H_u = \{x \vert \langle x, u \rangle \le 1 \}\), \(x \in
+       H^{+}_u\) (we assume that \(x\) is a point in the interior.) and \(K \subset
+       H^{-1}_u\). \(K \subset H_u^{-1} \implies \forall x \in K\), \(\langle x, u
+       \rangle \le 1 \implies \langle K, u \rangle \le 1\). This implies that \(u
+       \in K^{*}\).
+</p>
+
+<p>
+\(x \in K^{**}\) and \(u\in K^{*}\). Now \(\langle x, u \rangle \le 1\), \(x\in
+       H^{-1}_u\) contradiction.
+</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org6303f2f" class="outline-3">
+<h3 id="org6303f2f"><span class="section-number-3">8.3</span> Random stuff</h3>
+<div class="outline-text-3" id="text-8-3">
+<p>
+If \(K\) is a convex body, it will turn out that the support function of the
+convex body will be the distance function of the dual body and vice-versa.
+</p>
+</div>
+</div>
+<div id="outline-container-org042d9dc" class="outline-3">
+<h3 id="org042d9dc"><span class="section-number-3">8.4</span> Theorem</h3>
+<div class="outline-text-3" id="text-8-4">
+<p>
+Let \(K \subset \R^n\) be a convex body and \(0 \in \inte K\), then \(d_K =
+   h_{K^{*}}\) and \(d_{K^{*}} = h_{K}\).
+</p>
+</div>
+</div>
+<div id="outline-container-org51a5790" class="outline-3">
+<h3 id="org51a5790"><span class="section-number-3">8.5</span> Lemma</h3>
+<div class="outline-text-3" id="text-8-5">
+<p>
+Let \(K_1 \subset K_2\), then \(K_2^{*} \subset K_1^{*}\). The proof is not too hard.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd6e61df" class="outline-3">
+<h3 id="orgd6e61df"><span class="section-number-3">8.6</span> Lemma</h3>
+<div class="outline-text-3" id="text-8-6">
+<p>
+Let \(K \subset \R^n\) and \(0 \in \inte K\). Then \(H_u\) is a support hyperplane
+for \(K^{*}\) if \(u \in \partial K\).
+</p>
+</div>
+<div id="outline-container-orgd3ab6ee" class="outline-4">
+<h4 id="orgd3ab6ee"><span class="section-number-4">8.6.1</span> Proof</h4>
+<div class="outline-text-4" id="text-8-6-1">
+<p>
+We know that \(K^{*} = \cap_{x\in \partial K} H^{-1}_u\). We take \(0\in \inte
+    K\), and in each direction \(u\), we have a unique intersection with the body.
+In each direction, we have exactly one point on the boundary.
+</p>
+
+<p>
+\(K^{*} = \cap H^{-1}_u\) convex body \(0 \in \inte K^{*}\).
+</p>
+
+<p>
+The proof is kinda easy. The proof involved constructing a new convex body,
+\(\tilde{K} = \conv \{ \beta u \vert u \in \partial K\}\). Apparently there is
+a problem with this proof. <sup><a id="fnr.29" class="footref" href="#fn.29">29</a></sup>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd41ed38" class="outline-3">
+<h3 id="orgd41ed38"><span class="section-number-3">8.7</span> Proof of duality of distance and \(h_K\)</h3>
+<div class="outline-text-3" id="text-8-7">
+<p>
+Let \(u \in \partial K \implies d_K(u) = 1\)
+</p>
+
+<p>
+But we just argued that on the boundary, it is a support hyperplane. Thus
+\(H_u = H_K(u) = \{x \vert \langle x, u \rangle = h_{K^{*}}(u)\}\) and \(\{x \vert
+   \langle x, u \rangle = 1\}\). Thus \(h_{K^{*}}(u) = 1\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgbd8bedb" class="outline-3">
+<h3 id="orgbd8bedb"><span class="section-number-3">8.8</span> Theorem</h3>
+<div class="outline-text-3" id="text-8-8">
+<p>
+Let \(K \subset \R^n\) be a convex body with \(0 \in \inte K\).
+</p>
+
+<p>
+\(K^{+} = \Gamma^{+}(d_K) \subset \R^{n+1}\) and \(H = \{(x, 1) \vert x \in
+   \R^{n}\} \subset \R^{n+1}\). Then
+</p>
+<ol class="org-ol">
+<li>\(\partial K_{+}\) is the graph of \(d_K\) in \(\R^{n+1}\).</li>
+<li>$K<sub>+</sub> &cap; H$is a translation of \(K\).</li>
+<li>\(K^{*}_+ \cap H\) is a translate of \(K^{*}\)</li>
+<li>\(K_{+}, K^{*}_+\) are convex with appex \(O\) in \(\R^n\).</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgb32ab14" class="outline-3">
+<h3 id="orgb32ab14"><span class="section-number-3">8.9</span> Theorem</h3>
+<div class="outline-text-3" id="text-8-9">
+<p>
+Every positive homogenous and convex function \(h \colon \R^n \rightarrow \R\)
+is a support function \(h = h_K\) of a unique convex body \(K\) whose dimension
+possibly \(<n\). <sup><a id="fnr.30" class="footref" href="#fn.30">30</a></sup>
+</p>
+</div>
+</div>
+<div id="outline-container-org67ba79a" class="outline-3">
+<h3 id="org67ba79a"><span class="section-number-3">8.10</span> Radon's theorem</h3>
+<div class="outline-text-3" id="text-8-10">
+<p>
+Let \(X\) be a set of points in \(\R^n\), and \(\vert X \vert \ge n+2\), then there
+is a partition of \(X\) into \(P\) and \(N\), such that a convex hull of \(P\) and
+\(N\) intersect.
+</p>
+</div>
+<div id="outline-container-org8c3b619" class="outline-4">
+<h4 id="org8c3b619"><span class="section-number-4">8.10.1</span> Proof</h4>
+<div class="outline-text-4" id="text-8-10-1">
+<p>
+One can assume that \(\vert X \vert = n+2\) and \(X = \{x_1, \cdots, x_{n+2}\).
+There is an affine dependence \(\lambda_1 x_1 + \cdots + \lambda n+2 x_{n+2}
+    = 0\) and \(\lambda_1 + \cdots + \lambda_n = 0\) and not all \(\lambda_i\) are
+zero.
+</p>
+
+<p>
+So we can write it in terms of \(\sum_{i \in P} \lambda_i x_i = \sum_{i \in
+    N} -\lambda_i x_i\).
+</p>
+
+<p>
+Now \(A = \sum_{x_i \in P} \lambda_i = \sum_{x_i \in N} \lambda)i > 0\).
+</p>
+
+<p>
+Now it is pretty easy to see that there is a point in intersection.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb3348b9" class="outline-4">
+<h4 id="orgb3348b9"><span class="section-number-4">8.10.2</span> Questions?</h4>
+<div class="outline-text-4" id="text-8-10-2">
+<p>
+Why not two? How many points should we have to say something like, we can
+partition into \(100\) sets, but their convex hulls intersect.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4fb48b4" class="outline-3">
+<h3 id="org4fb48b4"><span class="section-number-3">8.11</span> Affine space</h3>
+<div class="outline-text-3" id="text-8-11">
+<p>
+\((\mathscr{E}, E, \theta \colon \mathscr{E} \times \mathscr{E} \rightarrow
+   E)\)
+</p>
+
+<ol class="org-ol">
+<li>For all \(A \in \mathscr{E}\), \(\theta_A \colon \mathscr{E} \rightarrow E\)
+is a bijection. \(B \mapsto \theta(A, B)\).</li>
+<li>For all \(A, B, C \in \mathscr{E}\), \(\theta(A, B) + \theta(B, C) =
+      \theta(A, C)\).</li>
+</ol>
+
+<p>
+Example: \((E,E, \theta(u, v) = v - u)\) This is an example with \(E = \R^n\)
+that we work with.
+</p>
+</div>
+</div>
+<div id="outline-container-org7efd75d" class="outline-3">
+<h3 id="org7efd75d"><span class="section-number-3">8.12</span> Random stuff</h3>
+<div class="outline-text-3" id="text-8-12">
+<p>
+A map \((\mathscr{E}, E, \theta) \rightarrow (\mathscr{F}, F, \theta)\).
+\(\theta(\varphi, f), \varphi \colon \mathscr{E}\rightarrow \mathscr{F}\).
+</p>
+
+<p>
+And \(f\colon E \rightarrow F\), and for all \(A, B \in \mathscr{E}\) and
+\(\theta(\varphi(A), \varphi(B)) = f(\theta(A, B))\).
+</p>
+</div>
+</div>
+<div id="outline-container-org56fc1f1" class="outline-3">
+<h3 id="org56fc1f1"><span class="section-number-3">8.13</span> Radon's theorem rephrased</h3>
+<div class="outline-text-3" id="text-8-13">
+<p>
+Let \(T_n+1\) be a simplex and \(a \colon T_{n+1}\rightarrow \R^n\) be an affine
+map. Then there exists faces \(\sigma\) and \(\tau\) of the simplex such that
+their \(a\) images in \(\R^n\) would intersect.
+</p>
+
+<p>
+Why is this the same?
+</p>
+
+<p>
+Why affine map? If we have an affine map, he the image of the simplex is the
+convex hull of all points on vertices.
+</p>
+
+<p>
+What about continuous map?
+</p>
+</div>
+</div>
+<div id="outline-container-org0991e27" class="outline-3">
+<h3 id="org0991e27"><span class="section-number-3">8.14</span> Continuous variant of Radon's theorem (Topological Radon)</h3>
+<div class="outline-text-3" id="text-8-14">
+<p>
+The continuous invariant is also true.
+</p>
+</div>
+</div>
+<div id="outline-container-org3f866e1" class="outline-3">
+<h3 id="org3f866e1"><span class="section-number-3">8.15</span> Helly's theorem</h3>
+<div class="outline-text-3" id="text-8-15">
+<p>
+Let \(K_1, \cdots, K_n\) be a collection of convex sets in \(\R^d\) such that
+every subcollection of \(d+1\) of them intersects \(\neq \emptyset\), then the
+complete family intersects.
+</p>
+</div>
+<div id="outline-container-org7d87def" class="outline-4">
+<h4 id="org7d87def"><span class="section-number-4">8.15.1</span> Proof</h4>
+<div class="outline-text-4" id="text-8-15-1">
+<p>
+Induction on \(n\). If \(n \le d+1\), there is nothing to prove. Let \(n \ge
+    d+2\), assume that it holds for \(n-1\), consider the following points \(x_i \in
+    \cap_{1 \le j \le n, j \neq i} K_j\). By induction hypothesis, this has to
+intersect. In this way, have points \(x_1, \cdots, x_n\). By assumption, \(n\ge
+    d+2\), we can apply Radon's theorem. And the point in the Radon's theorem
+belongs to the intersection of everything.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf5f19ad" class="outline-3">
+<h3 id="orgf5f19ad"><span class="section-number-3">8.16</span> Helly's theorem*</h3>
+<div class="outline-text-3" id="text-8-16">
+<p>
+Let \(\{K_i \vert i \in I\}\) be a family of <b>convex bodies</b> in \(\R^n\) such
+that every family of \(d+1\) of them intersects, then the whole intersection is
+non-empty. The difference between these and the before theorem is that the
+index set may be infinite. This follows from the above theorem because of
+compactness. (Use the closed set intersection of compactness; the
+finite-intersection property.)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcc8ab48" class="outline-2">
+<h2 id="orgcc8ab48"><span class="section-number-2">9</span> Lecture 9 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-14 Wed&gt;</span></span></h2>
+<div class="outline-text-2" id="text-9">
+</div>
+<div id="outline-container-org7a283eb" class="outline-3">
+<h3 id="org7a283eb"><span class="section-number-3">9.1</span> Helly's theorem</h3>
+<div class="outline-text-3" id="text-9-1">
+<p>
+Let \(K_1, \cdots, K_n\) be a collection of convex sets in \(\R^d\) such that
+every subcollection of \(d+1\) of them intersects \(\neq \emptyset\), then the
+complete family intersects.
+</p>
+</div>
+<div id="outline-container-org63421c6" class="outline-4">
+<h4 id="org63421c6"><span class="section-number-4">9.1.1</span> Is convexity important?</h4>
+<div class="outline-text-4" id="text-9-1-1">
+<p>
+If we drop convexity of one set, we would not have such a result. Convexity
+is an important assumption. It's not too hard to construct a
+counter-example.
+</p>
+</div>
+</div>
+<div id="outline-container-org4b90755" class="outline-4">
+<h4 id="org4b90755"><span class="section-number-4">9.1.2</span> Remark about infinite families</h4>
+<div class="outline-text-4" id="text-9-1-2">
+<p>
+We can replace the finite family with an infinite family, but of convex
+bodies.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfeafd6f" class="outline-3">
+<h3 id="orgfeafd6f"><span class="section-number-3">9.2</span> Charatheodery's theorem</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+If \(x\in \conv X\), then there exists a collection of at most \(d+1\) points in
+\(X'\) of \(X\) such that \(x\in \conv X' \subset \conv X\).
+</p>
+</div>
+</div>
+<div id="outline-container-org61424a0" class="outline-3">
+<h3 id="org61424a0"><span class="section-number-3">9.3</span> Colorful Charatheodery's theorem (theorem by Inere Bardney)</h3>
+<div class="outline-text-3" id="text-9-3">
+<p>
+Let \(S_1, \cdots, S_{d+1}\) be collections of points in \(\R^d\) and \(x \in
+   \conv S_1 \cap \conv S_2 \cap \cdots \cap S_{d+1}\). Then there are points
+\(x_1 \in S_1, x_2 \in S_2, \cdots, x_{d+1} \in S_{d+1}\) such that \(x\) is an
+element of \(\conv \{x_1, \cdots, x_{d+1}\}\).<sup><a id="fnr.31" class="footref" href="#fn.31">31</a></sup>
+</p>
+</div>
+<div id="outline-container-orgd70843f" class="outline-4">
+<h4 id="orgd70843f"><span class="section-number-4">9.3.1</span> Proof</h4>
+<div class="outline-text-4" id="text-9-3-1">
+<p>
+A proof using infinite descent. 
+</p>
+
+<p>
+Without loss of generality, we can assume that each of \(S_i\) are finite.
+Without loss of generality, we can assume that \(x = 0\), \(d(x, \conv\{x_1,
+    \cdots, x_{d+1}\})\) for any choice \(x_1 \in S_1, \cdots, x_{d+1} \in
+    S_{d+1}\}\). This is a finite set.Let \(d\) be the minimum distance. If \(d=0\),
+we are done. Since we have a set of points \(x_i \in S_i\), such that the
+distance of the point \(x\) and the convex hulls formed by the points is zero,
+which means \(x\) is in the convex hull and we are done.
+</p>
+
+<p>
+Assume that \(d \neq 0\), then one of \(d\) minimizes, then there exit
+\(\bar{x_1}\in S_1, \cdots, \bar{x}_{d+1} \in S_{d+1}\). But then, since the
+convex hull is closed, the distance is attained at a point. There is a point
+\(z\) such that \(d(x, z) = d\).
+</p>
+
+<p>
+Let \(H\) be the hyperplane perpendicular or orthogonal to the vector \(z-x\),
+oriented such that \(x \in H^{-1}\).
+</p>
+
+<p>
+We prove first that \(S = \conv\{\bar{x}_1, \cdots, \bar{x}_{d+1}\} \subset
+    H^{+}\) Assume that \(y \in S\) is in the interior of \(H^{-1}\). Consider the
+triangle \(\Delta xyz\).We know that the angle \(xzy < \frac{\pi}{2}\). Second
+thing we know is that the edge \(zy\) &sub; S$. \(xz \le xy\), because \(xz\) is
+the minimum distance.
+</p>
+
+<p>
+Consider a point \(t \in (z, y) \subset S\) such that the angle \(\angle xtz >
+    \angle xzt\). But then \(\vert xz \vert > \vert xt\vert\). This is a
+contradiction, since \(t\) is in \(S\) and \(xt\) minimizes the distance of \(x\) to
+\(S\).
+</p>
+
+<p>
+Thus there is no point of \(S\) in the interior of \(H^{-}\).
+</p>
+
+<p>
+\(z \in \conv\{\bar{x}_1, \cdots, \bar{x}_{d+1}\} \cap H\). We can assume that
+all of them are in \(H\), if not we can put zero. (Why?)
+</p>
+
+<p>
+\(z \in \cone\{\bar{x}_1, \cdots, \hat{x}_i, \cdots x_{d+1}\}\)
+</p>
+
+<p>
+Since \(x\in \conv S_j\), there is \(\tilde{x_j} \in S_j \cap H\) 
+</p>
+
+<p>
+\(z \in \conv\{\bar{x}_1, \cdots, \tilde{x_j}, \cdots, \bar{x}_{d+1}\}\). We
+call the last set \(\bar{S}\).
+</p>
+
+<p>
+Consider the triangle \(\Delta xz\bar{x}_j\) and we know.
+</p>
+<ol class="org-ol">
+<li>\([z, \bar{x}_j] \subset \bar{S}\)</li>
+<li>\(\angle \tilde{x_j}zx < \frac{\pi}{2}\).</li>
+<li>\(\vert xz\vert < \bar x \tilde{x}_j\vert\).</li>
+</ol>
+
+<p>
+This is similar to the last part, we have a contradiction. Taking a point \(t
+    \in xz\) close to \(z\) such that \(\angle tzx < \angle ztx\) we get that \(\vert
+    xt \vert < \vert xz\vert = d\). This is a contradiction since \(t \in \bar{S}
+    = \conv\{\bar{x}_1, \cdots, \bar{x}_{d+1}\}\). We are done.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org337a424" class="outline-3">
+<h3 id="org337a424"><span class="section-number-3">9.4</span> Tverberg's theorem</h3>
+<div class="outline-text-3" id="text-9-4">
+<p>
+<a href="https://en.wikipedia.org/wiki/Tverberg's_theorem">Wikipedia</a> Let \(N=(d+1)(r-1)\) and \(X \subset \R^d\) with \(\vert X \vert \ge
+   N+1\). Then there exists a partition \(X_1, \cdots, X_r\) of \(X\) such that
+</p>
+
+<p>
+\[\conv X_1 \cap \conv X_2 \cdots \cap \conv X_r \neq \emptyset\]
+</p>
+
+<p>
+Can we drop one point and still get the result? No, the number of points is
+minimal. I didn't write the counter example.
+</p>
+
+<p>
+A simplex. Consider a simplex \(\Delta_N = \conv \{x_0, \cdots, x_N\} \mapsto
+   \R^n\) (this is an affine map)
+</p>
+
+<p>
+\(X = \vert_{i=0}^n \lambda_i x_i \mapsto \sum_{i=0}^N \lambda_i f(x_i)\).
+</p>
+
+<p>
+The affine map sends a face of the simplex to the convex hull of the
+simplex.
+</p>
+</div>
+<div id="outline-container-org31a1bc7" class="outline-4">
+<h4 id="org31a1bc7"><span class="section-number-4">9.4.1</span> Question (Topological Tverberg Conjecture)</h4>
+<div class="outline-text-4" id="text-9-4-1">
+<p>
+For all \(d \ge 1\), \(r \ge 2\) and \(n=(d+1)(r-1)\) and any continuous map
+\(f\colon \Delta_N \rightarrow \R^d\), there exists \(G_1, \cdots, G_r\) pairwise
+disjoint faces of \(\Delta_N\) such that \(f(\sigma_1) \cap \cdots \cap
+    f(\sigma_r) \neq \emptyset\).
+</p>
+
+<p>
+This holds if and only if \(r\) is a power of a prime. This has something to
+do with the elementary Abelian groups and their structure. Elementary
+Abelian groups are direct sums of cyclic groups \(\Z_p \oplus \cdots \oplus
+    \Z_p\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org641a92c" class="outline-3">
+<h3 id="org641a92c"><span class="section-number-3">9.5</span> Weak Tverberg theorem</h3>
+<div class="outline-text-3" id="text-9-5">
+<p>
+Let \(n\ge (r-1)(d+1)^2 + 1\) and \(X = \{x_1, \cdots, x_n\} \subset \R^d\).
+There is a partition \(I_1, \cdots, I_r\) of \([n] = \{1, 2, \cdots, n\}\) such
+that the intersection of the convex hulls 
+</p>
+
+<p>
+\[\cap_{n \le j \le r} \conv\{x_i \vert i \in I_j\} \neq \emptyset\]
+</p>
+
+<p>
+It's the same as last theorem, except we have more points.
+</p>
+</div>
+<div id="outline-container-org214c4ed" class="outline-4">
+<h4 id="org214c4ed"><span class="section-number-4">9.5.1</span> Proof</h4>
+<div class="outline-text-4" id="text-9-5-1">
+<p>
+\(k=(d+1)(r-1)\), \(s=n-k \ge (r-1)(d+1)^2 + 1 - (r-1)(d+1) = (r-1)(d+1)d +1\)
+</p>
+
+<p>
+Now \(Y_1, \cdots, Y_{d+1} \subset X\) and each \(\vert Y_i\vert = s\), we claim
+that the intersection is non-empty.
+</p>
+
+<p>
+Proof: \(\vert Y_1 \cap Y_2\vert = \vert Y_1\vert + vert Y_2\vert - \vert Y_1
+    \cup Y_2 \vert \ge n-k+n-k-n = n-2k \ge (r-1)(d+1)^2 - (r-1)\cdot 2 \cdot
+    (d+1)\)
+</p>
+
+<p>
+\(\vert Y_1 \cap Y_2 \cap Y_3 \vert = \vert Y_1 \cap Y_2 \vert + \vert
+    Y_3\vert - \vert (Y_1 \cap Y_2) \cup Y_2\vert \ge n-2k+n-k-n = n-3k\)
+</p>
+
+<p>
+\(\vert Y_1 \cap \cdots \cap Y_{d+1} \vert \ge n - (d+1)k \ge 1\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgb50eca5" class="outline-4">
+<h4 id="orgb50eca5"><span class="section-number-4">9.5.2</span> <span class="todo TODO">TODO</span> Corollary</h4>
+<div class="outline-text-4" id="text-9-5-2">
+<p>
+If \(Y_1, \cdots, Y_{d+1} \subset X\) with \(\vert Y_i\vert = s\), then \(\conv
+    Y_1 \cap \cdots \cap \conv Y_{d+1} \neq \emptyset\).
+</p>
+
+<p>
+\(Y=\{\conv Y\vert Y \subset X, \vert Y\vert \ge s\}\), finite family of
+convex sets.
+</p>
+
+<p>
+Every subfamily of \(d+1\) elements non-trivially intersect. Then by Helly's
+theorem there is
+</p>
+
+<p>
+\(z \in \cap Y\). \(z\in \conv X\). But now Charatheodery tells that \(\exists x_1
+    \subset X\) such that \(\vert X_1 \vert = d+1\) and \(z \in \conv X_1\).
+</p>
+
+<p>
+\(\vert X - X_1 \vert = n - (d+1) \ge (n-1)(d+1)^2 + 1 - (d+1) \ge s\). \(z \in
+    \conv(X - X_2) \implies \exists x_2 \subset X - X_1), x_2 = d+1\) and \(z =
+    \conv X_2\). I can do this \(r\) times and we are done.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org390ed79" class="outline-3">
+<h3 id="org390ed79"><span class="section-number-3">9.6</span> Optimal colored Tverberg theorem</h3>
+<div class="outline-text-3" id="text-9-6">
+</div>
+<div id="outline-container-orga8deb71" class="outline-4">
+<h4 id="orga8deb71"><span class="section-number-4">9.6.1</span> Topological Tverberg theorem</h4>
+<div class="outline-text-4" id="text-9-6-1">
+<p>
+\(d \ge 1\), \(r \ge 2\), power of prime, \(f \colon \Delta_N \rightarrow \R^d\),
+a continuous map. Here \(N=(d+1)(r-1)\).
+</p>
+
+<p>
+Then there exists \(\sigma_1, \cdots, \sigma_r\) pairwise disjoint faces of
+\(\Delta_N\), \(f(\sigma_1) \cap \cdots \cap f(\sigma_r) \neq \empty set\).
+</p>
+</div>
+</div>
+<div id="outline-container-org32f75b8" class="outline-4">
+<h4 id="org32f75b8"><span class="section-number-4">9.6.2</span> Optimal colored version</h4>
+<div class="outline-text-4" id="text-9-6-2">
+<p>
+\(d \ge 1\), \(r\ge 2\) is prime. \(f\colon \Delta_N \rightarrow \R^d\) continuous
+such that \(N=(d+1)(r-1)\) and \(\vert \Delta_N \vert= C_0 \sqcup \cdots \sqcup C_m\)
+such that \(\vert C_i \vert \le r- 1\) implies that there exists \(\sigma_1,
+    \cdots, \sigma_r\) (pairwise disjoint faces of \(\Delta_N\) such that
+\(f(\sigma_1)\cap \cdots \cap f(\sigma_r) \neq \emptyset\).
+</p>
+
+<p>
+For all \(i, j\), \(\vert \sigma_i \cap \sigma_j \vert \le 1\). About
+Barany-Larwan conjecture for primes - 1.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc765256" class="outline-2">
+<h2 id="orgc765256"><span class="section-number-2">10</span> Lecture 10 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-20 Tue&gt;</span></span></h2>
+<div class="outline-text-2" id="text-10">
+</div>
+<div id="outline-container-org23ab4d1" class="outline-3">
+<h3 id="org23ab4d1"><span class="section-number-3">10.1</span> Lemma about convex functions</h3>
+<div class="outline-text-3" id="text-10-1">
+<p>
+Let \(f\colon I \rightarrow \R\) be a convex function and \(x \le y \le z\) be
+points in \(I_1\). Then the following two inequalities hold: 
+</p>
+
+<p>
+\[\frac{f(y) - f(x)}{y-x} \le \frac{f(z)-f(x)}{z-x} \le \frac{f(z) -
+      f(y)}{z-y}\]
+</p>
+
+<p>
+One can think about this as the gradient/slope of lines that can be formed
+using points on the function.
+</p>
+</div>
+<div id="outline-container-orgba8ecc5" class="outline-4">
+<h4 id="orgba8ecc5"><span class="section-number-4">10.1.1</span> Proof</h4>
+<div class="outline-text-4" id="text-10-1-1">
+<p>
+\(x < y < z \implies\) there exists \(\lambda \in (0, 1)\), \(y = \lambda x + (1-\lambda)z\)
+</p>
+
+<p>
+\[\frac{f(y) - f(x)}{y-x} = \frac{f(\lambda x + (1-\lambda)y) -
+    f(x))}{\lambda x + (1-\lambda)z - x} \le \frac{\lambda f(x) + (1-\lambda)
+    f(z) - f(x)}{(1-\lambda) z - (1-\lambda)x} = \frac{(1-\lambda)f(z) -
+    (1-\lambda)f(x)}{(1-\lambda)z - (1-\lambda)x} = \frac{f(z) - f(x)}{z-x}\]
+</p>
+
+<p>
+\[\frac{f(z) - f(y)}{z-y} = \frac{f(z) - f(\lambda x + (1-\lambda)
+    y)}{1-\lambda x - (1-\lambda) z} \ge \frac{f(z) - \lambda f(x) -
+    (1-\lambda)f(z)}{\lambda z - \lambda x}\]
+</p>
+
+<p>
+The last function is equal to \(\frac{\lambda f(z) - \lambda f(x)}{\lambda
+    z - \lambda x} = \frac{f(z) - f(x)}{z-x}\)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org44b76b1" class="outline-3">
+<h3 id="org44b76b1"><span class="section-number-3">10.2</span> Theorem (Jensen's inequality)</h3>
+<div class="outline-text-3" id="text-10-2">
+<p>
+Let \(f\colon C \rightarrow \R\) be a convex function. Then for every \(x_1,
+   \cdots, x_m \in C\) and \(\lambda_1, \cdots, \lambda_m \ge 0\) with \(\sum
+   \lambda_i = 1\) holds
+</p>
+
+<p>
+\[f(\lambda_1 x_1 + \cdots + \lambda_m x_m) \le \lambda_1 f(x_1) + \cdots +
+   \lambda_m f(x_m)\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgbedc25e" class="outline-3">
+<h3 id="orgbedc25e"><span class="section-number-3">10.3</span> Definition</h3>
+<div class="outline-text-3" id="text-10-3">
+<p>
+Let \(f\colon X \rightarrow \R\) where \(X \subset \R^n\). The function \(f\) is
+Lipschitz on \(Y \subset X\) if there exists \(L > 0\), and \(x, y \in Y\), \(\vert
+   f(x) - f(y) \vert \le L \Vert x - y \Vert\). The function \(f\colon X
+   \rightarrow \R\) is locally Lipschitz on \(X\) if for all \(x\in X\), there exists
+\(x\in U\), a neighbourhood of \(x\) in \(X\), \(f\vert_U\) is Lipschitz.
+</p>
+</div>
+</div>
+<div id="outline-container-org98810cd" class="outline-3">
+<h3 id="org98810cd"><span class="section-number-3">10.4</span> Theorem</h3>
+<div class="outline-text-3" id="text-10-4">
+<p>
+Let \(f\colon C\rightarrow \R\) be a convex function. Then \(f\) is Lipschitz on
+every compact subset of the interior of \(C\). In particular, \(f\) is continuous
+on the \(\int C\).
+</p>
+</div>
+<div id="outline-container-org53fbe6e" class="outline-4">
+<h4 id="org53fbe6e"><span class="section-number-4">10.4.1</span> Proof</h4>
+<div class="outline-text-4" id="text-10-4-1">
+<p>
+It suffices to prove that \(f\) is locally Lipschitz. This is true, because at
+each point in the compact set, find a neighborhood where it is locally
+Lipschitz. Now this is a cover, hence there is a finite subcover. Choose
+Lipschitz constant to be the maximum of all the elements and we are done.
+</p>
+
+<p>
+Let \(X\) be element of \(\int C\), let \(N(X, \varepsilon)\) be an open ball
+around \(x\) of radius \(2\varepsilon\). Then there exists \(\varepsilon, \alpha >
+    0\) such that \(N(2\varepsilon) \subset \int C\) and \(f\vert_{N(2\varepsilon)}\)
+is bounded from above by \(\alpha\).
+</p>
+
+<p>
+It suffices to prove that \(f\) is bounded above on a simplex containing \(x\)
+in the interior. Let \(x \in \int\{\conv\{x_0, \cdots, x_{n}\}\) where \(x_0,
+    \cdots, x_m \in \int C\) and affinely independent.
+</p>
+
+<p>
+If \(y \in \Delta\), then \(y = \lambda_0 x_0 + \cdots + \lambda_m x_n\) where
+\(\lambda_0, \cdots, \lambda_m \ge 0\), and \(\sum \lambda_i = 1\).
+</p>
+
+<p>
+\(f(y) = f(\lambda_0 x_0 + \cdots + \lambda_m x_m) \le \lambda_0 f(x_0) +
+    \cdots + \lambda_m f(x_n) \le \vert f(x_0) \vert + \cdots + \vert f(x_n)
+    \vert = \alpha\).
+</p>
+
+<p>
+There exists \(\gamma > 0\), such that the absolute value \(\vert
+    f\vert_{N(2\varepsilon)}\vert\) is bounded by \(\gamma\) from above.
+</p>
+
+<p>
+\(x = \frac{1}{2}(2x-y) + \frac{y}{2} \implies f(x) = f(\frac{1}{2}(2x-y) +
+    \frac{1}{2}y) \le \frac{1}{2} f(2x + y) + \frac{1}{2} f(y)\)
+</p>
+
+<p>
+\(2f(x) - f(2x + y) \le f(y)\) (missed some details following)
+</p>
+
+<p>
+\(\Vert 2x - y - x\Vert = \Vert x - y \Vert < \varepsilon\)
+</p>
+
+<p>
+\(\alpha \ge f(y) \ge 2 f(x) - f(2x - y) \ge 2 f(x) - \alpha\)
+</p>
+
+<p>
+\(f\) is Lipschitz on \(N(\varepsilon)\)
+</p>
+
+<p>
+\(\Vert w - x \Vert \le \Vert w - y\Vert + \Vert y - x\Vert \le \varepsilon +
+    \varepsilon\). \(y, z \in N(\varepsilon)\), \(w\) is a point on the ray emanating
+from \(z\) containing \(y\) such that the distance of \(w\) to \(y\) is exactly
+\(\varepsilon\) (A diagram was drawn)
+</p>
+
+<p>
+\(f\vert_{[w, z]}\) is a convex function on interval \([w, z]\).
+</p>
+
+<p>
+\[\vert{f(y) - f(z)}{\Vert y -z\Vert} \le \frac{f(w) - f(z)}{\Vert w - y
+    \Vert} \le \frac{2\gamma}{\varepsilon}\]
+</p>
+
+<p>
+This implies that \(\vert f(y) - f(z)\vert \le \frac{2\gamma}{\varepsilon}
+    \Vert y - z\Vert\)
+</p>
+
+<p>
+We would be done if we had the opposite one, \(\vert f(y) - f(z)\vert \le
+    \frac{2\gamma}{\varepsilon} \Vert y - z\Vert\). But this is true using
+similar argument. Therefore the function is locally Lipschitz (this would
+also imply continuity.)    
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org148a7be" class="outline-3">
+<h3 id="org148a7be"><span class="section-number-3">10.5</span> Combinatorial theory of Polytopes and Polyhedral sets</h3>
+<div class="outline-text-3" id="text-10-5">
+</div>
+<div id="outline-container-org221093f" class="outline-4">
+<h4 id="org221093f"><span class="section-number-4">10.5.1</span> A boundary complex of a polyhedral set</h4>
+<div class="outline-text-4" id="text-10-5-1">
+</div>
+<ol class="org-ol">
+<li><a id="org1afb29f"></a>Theorem<br />
+<div class="outline-text-5" id="text-10-5-1-1">
+<p>
+Every Polytope contains or has finitely many faces and all of them are
+Polytopes.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org4803bec"></a>Proof<br />
+<div class="outline-text-6" id="text-10-5-1-1-1">
+<p>
+Let \(P\) be a Polytope \(P = \conv\{x_1, \cdots, x_r\} \subset \R^n\) b ea
+Polytope and \(F = P cap H\) be a face of \(P\), where \(H = \{x \vert \langle
+      x, a \rangle = \alpha \}\) is a support hyperplane.
+</p>
+
+<p>
+This means it intersects the Polytope and the whole Polytope is on one
+side. Thus \(P \subset H^{-1}\).
+</p>
+
+<p>
+We can assume that \(\langle a, x_1 \rangle = \cdots = \langle a,
+      x_s\rangle = \alpha\) for \(1\le s \le r\).
+</p>
+
+<p>
+\(\langle a, x_{s+1}\rangle = \alpha - \beta_{s+1}\) where \(\beta_{s+1} >
+      0\), \(\langle a, x_r \rangle = \alpha - \beta_r\) where \(\beta_r > 0\).
+</p>
+
+<p>
+let \(x\in P\) and therefore \(x = \lambda_1 x_1 + \cdots + \lambda_r x_r\)
+for \(\lambda_i > 0\) and \(\sum \lambda_i = 1\).
+</p>
+
+<p>
+\(\langle a, x\rangle = \langle a, \sum \lambda_i x_i \rangle = \sum
+      \lambda_i \langle a, x_i \rangle = \sum_{i=1}^{r} \lambda_i \alpha -
+      \sum_{i=s+1}^{r} \lambda_i \beta_i\)
+</p>
+
+<p>
+\(\langle a, x \rangle = \alpha - \sum_{i=s+1}^{r} \lambda_i \beta_i\)
+</p>
+
+<p>
+\(x \in F = P \cap H\), \(\langle a, x\rangle = \alpha - \sum_{i=s+1}^{r}
+      \lambda_i \beta_i = \alpha\), \(\beta_i > 0\) implies that \(\lambda_{s+1}=
+      \cdots = \lambda_r = 0\). \(X = \lambda_1 x_1 + \cdots + \lambda_s X_s\).
+</p>
+
+<p>
+\(F = \conv \{x_1, \cdots, x_s\}\) a Polytope.
+</p>
+</div>
+</li>
+</ol>
+</li>
+<li><a id="org32d3f95"></a>Theorem (Krein-Milman theorem)<br />
+<div class="outline-text-5" id="text-10-5-1-2">
+<p>
+Every convex Polytope is a convex hull of its vertices. \(P = \conv(\vert
+     P)\). (Vertices are the zero-dimensional faces of a Polytope.)
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="orgd37a2a0"></a>Proof<br />
+<div class="outline-text-6" id="text-10-5-1-2-1">
+<p>
+\(P = \conv\{x_1, \cdots, x_r\}\). \(\vert P \subset P\), \(\conv (\vert P)
+      \subset P\).
+</p>
+
+<p>
+We can assume that for every \(i \in \{1, \cdots n\}\), \(x_i \notin \conv
+      \{x_1, \cdots, \hat{x}_i, \cdots, x_r\}\) We can do this and get a minimal
+set of points.
+</p>
+
+<p>
+Now we need to prove that every \(x_i\) is a vertex. 
+</p>
+
+<p>
+\(y_i = p_{P_i}(x_i)\). There exists a supporting hyperplane \(H'_i\) to \(P'_i\)
+orthogonal to \(x_i - y_i\) and containing \(y_i\) with the property that \(P_i
+      \subset H_i'\) and \(x_i \in \int H_i^{+}\) (a diagram was drawn)
+</p>
+
+<p>
+Let \(H_i'\) be a the parallel Hyperplane to \(H_i\) passing through \(x_i\)
+(such a hyperplane is unique, because we are in Euclidean Geometry.)
+</p>
+
+<p>
+\((H_i)^{-} \subset \int (H'_i)^{-}\) implies that \(x_1, \cdots, \hat{x}_i,
+      \cdots, x_r \in H_i^{-1} \subset \int (H'_i)^{-}\) and \(H'_i \cap P =
+      \{x_i\}\). Thus \(x_i\) is a vertex. We are done.
+</p>
+</div>
+</li>
+</ol>
+</li>
+<li><a id="org49d43e5"></a>Remark<br />
+<div class="outline-text-5" id="text-10-5-1-3">
+<p>
+\(P = \conv \{x_1, \cdots, x_n\}\), we assume that these \(x_i\) are vertices.
+</p>
+</div>
+</li>
+<li><a id="org4c0479f"></a>Definition (Polyhedral set)<br />
+<div class="outline-text-5" id="text-10-5-1-4">
+<p>
+A finite intersection of closed half spaces is called a Polyhedral set.
+</p>
+</div>
+</li>
+<li><a id="orgbd7c1c4"></a>Theorem<br />
+<div class="outline-text-5" id="text-10-5-1-5">
+<p>
+Every Polytope \(P\) is a bounded Polyhedral set.
+</p>
+</div>
+</li>
+<li><a id="org1e4d3bc"></a>Remark<br />
+<div class="outline-text-5" id="text-10-5-1-6">
+<p>
+A Polytope is a convex hull of finitely many points.
+</p>
+
+<p>
+Also a finite bounded intersection of closed half space. (finitely many
+vectors and distances.)
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org8d1a2a0" class="outline-2">
+<h2 id="org8d1a2a0"><span class="section-number-2">11</span> Lecture 11 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-21 Wed&gt;</span></span></h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-org9d143dd" class="outline-3">
+<h3 id="org9d143dd"><span class="section-number-3">11.1</span> Definition</h3>
+<div class="outline-text-3" id="text-11-1">
+<p>
+A polyhedral set is a finite intersection of closed half-spaces
+</p>
+</div>
+</div>
+<div id="outline-container-org948b5a0" class="outline-3">
+<h3 id="org948b5a0"><span class="section-number-3">11.2</span> Theorem</h3>
+<div class="outline-text-3" id="text-11-2">
+<p>
+Every polytope is a bounded polyhedral set.
+</p>
+</div>
+<div id="outline-container-orgf684eb7" class="outline-4">
+<h4 id="orgf684eb7"><span class="section-number-4">11.2.1</span> Proof</h4>
+<div class="outline-text-4" id="text-11-2-1">
+<p>
+\(P\) is a polytope. The aim is to show that it is the intersection of
+finitely many closed half spaces \(H_i^{-}\).
+</p>
+
+<p>
+It suffices to prove that \(P\) is an intersection of finitely many closed
+half spaces. This would mean that it would be a Polyhedral set. Boundedness
+follows from the boundedness of \(P\).
+</p>
+
+<p>
+\(P' = \cap_{H_i \textup{ suppporting hyperplane of a facet of P}} H_i^{-1}\)
+where \(H_i\) is the supporting hyperplane of a facet of \(P\). We need to prove
+that \(P' = P\).
+</p>
+
+<p>
+A theorem implies that the intersection is finite. (Is this because of
+compactness?)
+</p>
+
+<p>
+Suppose the contrary. \(x_0 \in P' \setminus P\). The idea is to find a facet
+that would separate \(P\) and \(x_0\), which would give us a contradiction. Let
+\(A\) be the union of all affine subspaces spanned by \(\aff(x_0 \cup
+    \textup{face of dim} \le\) where \(F\) is a face of \(P\) and \(\dim F \le n-2\).
+This is contained in the union of hyperplanes. \(\int A = \emptyset\) and
+\(y \in \int P \setminus A \neq \emptyset\).
+</p>
+
+<p>
+\(y\in \int P\) and \(x_0\in P' \setminus P\). The segment \([y, x_0] \cap
+    \partial P = \{z\}\) The segment \([y, x] \nsubseteq A\).
+</p>
+
+<p>
+\([y, x_0] \cap A \{x_0\}\) and \(t \in [y, x_0] \cap A\), \(t \neq x_0\). Because
+the boundary of \(P\) is the union of faces. Then \(z\) belongs to union of
+proper faces. \(z\) cannot be in any face of dimension \(\le n-2\) because \(z\)
+would be then in \(A\), then the whole line would be in \(A\). Thus \(z\) belongs
+to a facet. Now the supporting hyperplane of this facet would separate \(x_0\)
+and \(P\). \(z\) belongs to a facet \(F = P \cap H\), and \(P \subset H^{-1}\) and
+\(x_0 \in \in H^{+}\). Contradiction with \(x_0 \in P' = \cap H^{-1}\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org076e057" class="outline-3">
+<h3 id="org076e057"><span class="section-number-3">11.3</span> Corollary</h3>
+<div class="outline-text-3" id="text-11-3">
+<p>
+\(P = \cap H^{-}\), where \(H\) is a supporting facet. Moreover, this is a
+minimum representation, we cannot drop any half space from this
+representation.
+</p>
+</div>
+</div>
+<div id="outline-container-orge229d26" class="outline-3">
+<h3 id="orge229d26"><span class="section-number-3">11.4</span> Perspective</h3>
+<div class="outline-text-3" id="text-11-4">
+<ol class="org-ol">
+<li>We want to study the boundary of \(P\) which is the union of faces.</li>
+<li>We know that it is the union of finitely many faces.</li>
+<li>\(F(P)\) is the set of all faces of \(P\). \((F(P), \subset)\) is a partially
+ordered set.</li>
+<li>We can also write the Polyhedra as a disjoint union of the relative
+intersection of the faces.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org4a2d248" class="outline-3">
+<h3 id="org4a2d248"><span class="section-number-3">11.5</span> Theorem</h3>
+<div class="outline-text-3" id="text-11-5">
+<p>
+If \(P\) is a bounded polyhedral set, then it is a Polytope.
+</p>
+</div>
+<div id="outline-container-org2b675a0" class="outline-4">
+<h4 id="org2b675a0"><span class="section-number-4">11.5.1</span> Proof</h4>
+<div class="outline-text-4" id="text-11-5-1">
+<p>
+Induction on the dimension. \(P\) be an \(n\) dimensional bounded polyhedral set
+in \(\R^n\). Then all faces of \(P\) are polytopes by induction hypothesis.
+(face is the intersection of polyhedra with a hyperplane.) It follows that
+\(P \cap H\) is a polytope. \(\conv(\cap \relint F)\)
+</p>
+
+<p>
+\(\cup F \subset F \implies \conv(\cap F) \subset P\).
+</p>
+
+<p>
+Now we will prove that the interior of \(P\) is contained in the \(\conv(\cup
+    P) \subset P\). \(x\in \int P\), then \(x \in \conv(F_1 \cup F_2) \subset \conv
+    (\cup F)\). The argument is something about taking the closure.<sup><a id="fnr.32" class="footref" href="#fn.32">32</a></sup>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org36248ca" class="outline-3">
+<h3 id="org36248ca"><span class="section-number-3">11.6</span> Lemma</h3>
+<div class="outline-text-3" id="text-11-6">
+<p>
+If \(F_1\) and \(F_2\) are faces of \(P\), \(F_1\) is subset of \(F_2\), then we prove
+that \(F_1\) is a face of \(F_2\). We then gave a counterexample to the "inverse"
+statement, but we claim that this would be true if we work with Polytopes.
+</p>
+</div>
+</div>
+<div id="outline-container-org896b6b6" class="outline-3">
+<h3 id="org896b6b6"><span class="section-number-3">11.7</span> Theorem</h3>
+<div class="outline-text-3" id="text-11-7">
+<p>
+Let \(P\) be a polytope (<sup><a id="fnr.33" class="footref" href="#fn.33">33</a></sup>) and \(F_n\) is a face of \(P\) and \(F_2\) is a
+face of \(F_1\), then \(F_2\) is a face of \(P\).
+</p>
+</div>
+<div id="outline-container-org0dc4970" class="outline-4">
+<h4 id="org0dc4970"><span class="section-number-4">11.7.1</span> Proof</h4>
+<div class="outline-text-4" id="text-11-7-1">
+<p>
+\(F_1 \le P \implies\) There is a hyperplane \(H_1 = \{x \vert \langle x, u_1
+    \rangle = 0 \}\) such that \(F_1 = P \cap H_1\) and \(P\) is a subset of
+\(H_1^{+}\). \(F_2 \le F_1 \implies\), there is a hyperplane \(H_2 = \{x \in H_1
+    \vert \langle x, u \rangle = 0\}\) such that \(F_2 = F_1 \cap H_2 \subset H_1\)
+and \(F_1 \subset H_2^{+}\).
+</p>
+
+<p>
+We need a hyperplane that cuts \(P\) and only cuts in \(F_2\).
+</p>
+
+<p>
+\(H(\eta) = \{x \in \R^n \vert \langle x, \eta u_1 + u_2 \rangle = 0\}\), \(F_2
+    \subset H(\eta)\)
+</p>
+
+<p>
+\(\eta_0 = \max\{-\frac{\langle w, u_2\rangle}{\rangle w, u_2\rangle} \vert w
+    \in \textup{vert} P \ \textup{vert} F_1 \}\). This is a finite set.
+</p>
+
+<p>
+Let \(\eta > \eta_0\) and we prove that \(H(\eta) \cap P = F_2\) and \(P \subset
+    H^{+}(\eta)\).
+</p>
+
+<ol class="org-ol">
+<li>\(w\in \textup{vert} P \setminus \textup{vert} F_1\). \(\langle w, \eta
+       u_1 + u_2 \rangle > \eta_0\), \(\langle w, u_1\rangle + \langle w, u_2
+       \rangle \ge 0\), implies that \(w\in H^{+}(\eta)\).</li>
+<li>\(w \in \textup{vert} F_1 \setminus \textup{vert} F_2\) \(\langle w, \eta
+       u_1 + u_2\rangle = \eta\langle u, u_1 \rangle + \langle w, u_2 \rangle =
+       \langle w, u_2 \rangle \ge 0\).</li>
+<li>\(w\in \vert F_2\), \(\langle w, \eta u_1 + u_2 \rangle = 0\).</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org36b479d" class="outline-3">
+<h3 id="org36b479d"><span class="section-number-3">11.8</span> Theorem</h3>
+<div class="outline-text-3" id="text-11-8">
+<p>
+Any proper face of a polytope \(P\) is a face of a facet.
+</p>
+</div>
+<div id="outline-container-org0409f68" class="outline-4">
+<h4 id="org0409f68"><span class="section-number-4">11.8.1</span> Proof</h4>
+<div class="outline-text-4" id="text-11-8-1">
+<ol class="org-ol">
+<li><p>
+\(x\in F\) where \(F\) is a proper face of \(P\), then \(x\) belongs to a facet.
+\(\dim F \le n-2\) and \(y\in \int P\) \(M = \cup \aff(\{y\} \cup G)\). Here
+\(G\) is a a face of dimension
+</p>
+
+<p>
+\(z\in B(x, \varepsilon) \cap (\R^n \setminus M) \cap (\R^n \setminus P)\)
+</p>
+
+<p>
+\([z, y] \cap \partial P = \{t\}\) and \(t_\varepsilon\) is a facet of \(P\).
+</p>
+
+<p>
+We create a sequence of points on the facet that converges to \(x\). Each
+of the point belongs to a facet, but need to be the same. But since there
+are only a finite number of facets, there is a subsequence that is
+contained in exactly one facet and converges to \(x\).
+</p></li>
+<li><p>
+\(F\) is included in a facet. \(x\in \relint F\), by \((1)\), we have that \(x\)
+is an element of \(F_0\), where \(F_0\) is a facet of \(P\). \(F_0\) is a
+polytope and there exists \(F'\) a face of \(F_0\), where \(x\in \relint F'\).
+</p>
+
+<p>
+\(F \le P\) and \(F_0 \le P\) and \(F' \le F_0\), implies that \(F' \le P\). \(x
+       \in \relint F \cap \relint F'\), implies that \(F = F' \le F_0\).
+</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org278b86a" class="outline-3">
+<h3 id="org278b86a"><span class="section-number-3">11.9</span> Theorem</h3>
+<div class="outline-text-3" id="text-11-9">
+<p>
+Let \(\dim F' = 1\), where \(F_0\) is a face of an \(n\) polytope \(P\). If \(0 \le i
+   < k\) and \(F^i \le F^k\), then there exist faces \(F^{i+1}, \cdots, F^{k-1}\)
+such that \(F^i\) is contained in \(F^{i+1} \subset F^k\).
+</p>
+</div>
+<div id="outline-container-orgd62f417" class="outline-4">
+<h4 id="orgd62f417"><span class="section-number-4">11.9.1</span> Proof</h4>
+<div class="outline-text-4" id="text-11-9-1">
+<p>
+Induction on \(k\), when \(k=i+1\), there is nothing to prove. Assume \(k > i+1\),
+then \(F^i \subset \cdots \subset F^k \subset F^k\).
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org55073bf" class="outline-2">
+<h2 id="org55073bf"><span class="section-number-2">12</span> Lecture 12 <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-11-27 Tue&gt;</span></span></h2>
+<div class="outline-text-2" id="text-12">
+</div>
+<div id="outline-container-orgb8f0786" class="outline-3">
+<h3 id="orgb8f0786"><span class="section-number-3">12.1</span> Partially Ordered sets</h3>
+<div class="outline-text-3" id="text-12-1">
+<p>
+Let \(P \neq \emptyset\) and \(\rho \subset P^2\) is called a binary relation.
+</p>
+
+<ol class="org-ol">
+<li>\(\rho\) is reflexive, if the diagonal \(\Delta = \{(x, x) \vert x \in P \}
+      \subset \rho\)</li>
+<li>\(\rho\) is symmetric if \((x, y) \in \rho\), then \((y, x) \in \rho\).</li>
+<li>\(\rho\) is anti symmetric if \((x, y) \in \rho\) and \((y, x) \in \rho\), then \(x = y\)</li>
+<li>\(\rho\) is transitive if \((x, y) \in \rho\) and \((y, z) \in \rho\), then \((x,
+      z)\in \rho\).</li>
+</ol>
+
+<p>
+We then define the notion of a relational equivalence if is reflexive,
+symmetric and transitive. Then we define the notion of equivalence classes
+and partition of a set. An example is in Groups. There is also an equivalence
+between the partitions of \(X\) and relations of equal in \(X\).
+</p>
+</div>
+</div>
+<div id="outline-container-org46cbedc" class="outline-3">
+<h3 id="org46cbedc"><span class="section-number-3">12.2</span> Partial order</h3>
+<div class="outline-text-3" id="text-12-2">
+<p>
+\(\rho\) is <b>partial order</b> if \(\rho\) is Reflexive, Anti symmetric and
+transitive.
+</p>
+
+<p>
+Examples: \((\N, \le)\), \((\N, \vert)\). \((\Z, \vert)\) is not a partial order.
+</p>
+
+<p>
+\((\R, \le), (\R \times \R, \le)\) where \(\le\) is defined by \((x, y) \le (z, a)
+   \iff (x \le z) \textup{and} y \le a\)
+</p>
+
+<p>
+\(G\), \(\operatorname{sub}_G =\) subgroups of \(G\)
+</p>
+
+<p>
+\(X \neq 0\), \((P(X), \subset)\). Let \((P, \le)\) be a partial order, then if
+</p>
+<ol class="org-ol">
+<li>If for every \(p, q \in P\) holds and \(p \le q\) or \(q \le p\), then \(\le\) is
+called a linear order.</li>
+<li>An element \(m\) is the minimum of \(P\) if for every \(p \in P\), the following
+holds: \(m \le p\). The minimum element is unique. This is because of the
+anti-symmetric.</li>
+<li>An element is called the minimal element, if there is no element smaller
+than the minimal element. A minimum is clearly a minimal element. For
+example if we take \(\N\) without \(1\) and the relation being divisibility,
+there is no minimum any more, but every primes are minimal elements.</li>
+<li>One can define maximal elements similarly. Also similarly for maximum.</li>
+</ol>
+
+<p>
+A <b>cover relation</b> of order \((X, \le)\) is the relation \(\precsim\) define by \(p
+   \precsim q \iff\) for all \(r \in P\), \(P \le r \le q \implies p = r\) or \(q =
+   r\).
+</p>
+
+<p>
+A <b>Hasse diagram</b> is the following thing: take the minimal elements at the
+bottom., then we draw an arrow from the bottom element to the top element if
+\(p \precsim q\) and similarly one can continue this process.
+</p>
+
+<p>
+An example with \((\Z, \vert)\) was drawn. Another example, subgroups of \(\Z\).
+It turns out that the Hasse diagram is identical to \((\Z, \vert)\).
+</p>
+
+<p>
+A map \(f\colon P \rightarrow Q\) between orders is a <b>monotone map</b> (<b>order
+preserving</b>) if \(x \le y \implies f(x) \le f(y)\). We can also similarly
+define a <b>order reversing</b>.
+</p>
+
+<p>
+<b>Remark</b> Partial Ordered sets with order preserving maps form a Category.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbe0412c" class="outline-3">
+<h3 id="orgbe0412c"><span class="section-number-3">12.3</span> Boundary of Polytope</h3>
+<div class="outline-text-3" id="text-12-3">
+<p>
+Boundary of Polytope: There are finitely many faces of \(P\).
+</p>
+
+<p>
+\(B(P) =\) the set set of all faces of \(P\).
+</p>
+
+<p>
+\(B_0(P) =\) the set of all proper faces of \(P\). \(B_0(P)\) does not contain the
+empty set and \(P\).
+</p>
+
+<p>
+\((B(P), \subset)\) is a finite order with minimum \(\emptyset\) and maximum \(P\).
+</p>
+
+<p>
+Another Property is that \(P = \conv(\operatorname{vertices} P)\). We also know
+that the Polyhedral set is equal to the finite intersection of closed half
+spaces.
+</p>
+
+<p>
+If \(P\) is a bounded Polyhedral set, then \(P = \cap H^{-1}\) where \(H\) is a
+supporting hyperplane of a face of \(P\).
+</p>
+
+<p>
+We also know that \(F_1 \subset P\) and \(F_0 \le F_1\), then \(F_0 \le P\). In
+terms of Hasse diagram, if \(F_1 \subset P \implies B(F_1) \subset B(P)\)
+</p>
+
+<p>
+Also \(F_0 \subset P \implies\) there exists a face of \(P\), \(F_0 \le F\). The
+maximal elements are facets and the minimal elements are vertices.
+</p>
+
+<p>
+\(F^j \le F^k \le P\) and \(j \le k\), then there exists. \(F^i \le F^{j+1} \le
+   F^{j+2} \le \cdots \le F^{k-1} le F^k\).
+</p>
+
+<p>
+Recall the definition of a ridge. It's an \(n-2\) dimensional face of \(P\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgba34e1c" class="outline-3">
+<h3 id="orgba34e1c"><span class="section-number-3">12.4</span> Theorem about ridges</h3>
+<div class="outline-text-3" id="text-12-4">
+<p>
+Every \(\dim P - 2\) face of \(P\) is the intersection of exactly two
+facets.<sup><a id="fnr.34" class="footref" href="#fn.34">34</a></sup>
+</p>
+</div>
+<div id="outline-container-org533d2b7" class="outline-4">
+<h4 id="org533d2b7"><span class="section-number-4">12.4.1</span> Proof</h4>
+<div class="outline-text-4" id="text-12-4-1">
+<p>
+\(F_1, \cdots, F_s\) are facets of \(P\)
+</p>
+
+<p>
+\(F_1 = P \cap H_i\) and \(P \subset H_i^{-}\), \(\dim F = \dim P - 2\), \(P =
+    \cap_{i=1}^{s} H_i^{-}\), \(F_j = P \cap H_j = \cap_{i=1}^{s} H_i^{-} \cap H_j
+    = \cap_{i \neq j} H_i^{-} = \cap_{i \neq j}(H_i^{-} \cap H_j)\). Notice that
+\(H^{-1} \cap H_j\) are closed half spaces in \(H_j\). So \(F\) a facet of \(F_j\)
+is of the form \(F = F_j \cap H_r\) for \(1 \le r \le s\).
+</p>
+
+<p>
+\(F = F_j \cap H_r = (P \cap H_j) \cap (H_r \cap P) = F_j \cap F_r\).
+</p>
+
+<p>
+The exactly part is missing. Let us assume the contrary, that a ridge is in
+the intersection of three facets. Let us not take a point in the interior
+and define a hyperplane that would cut the three planes and form three
+lines. Now one of the lines have to be in the convex hull and (the trick is
+to use the fact that the dimension of a facet is \(n-1\), thus we may think
+about the orthogonal complement.) The contradiction is that the facet will
+have a hyperplane that will separate the two parts of the Polytope. But in
+our case, this cannot happen and hence a contradiction. <sup><a id="fnr.35" class="footref" href="#fn.35">35</a></sup>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga5055cf" class="outline-3">
+<h3 id="orga5055cf"><span class="section-number-3">12.5</span> Theorem</h3>
+<div class="outline-text-3" id="text-12-5">
+<p>
+Let \(P\) be a Polytope and \(1 \le j \le k < \dim P\), then every \(j\) face \(F^j\)
+is an intersection of \(k\) faces of \(P\). In particular, each proper face is an
+intersection of facets.
+</p>
+</div>
+<div id="outline-container-orgda2995c" class="outline-4">
+<h4 id="orgda2995c"><span class="section-number-4">12.5.1</span> Proof</h4>
+<div class="outline-text-4" id="text-12-5-1">
+<p>
+\(F^j \le P\) and \(F^j \le F^{j+1} \le \cdots \le F^{k+1} \le \cdots \le P\).
+</p>
+
+<p>
+There are two cases
+</p>
+
+<ol class="org-ol">
+<li>If \(k = j+1\) and \(k +1 = j+2\), then \(F^j \le \le F^{j+2}\). Then \(F^j\) is
+a ride of \(F^{j+2}\), so by the above theorem, \(F^j\) is the intersection
+of two facets of \(F^{j+2}\) that are dimension \(j+1 = k\) faces of
+\(F^{j+2}\) and consequently the faces \(P\).</li>
+<li>If \(k > j +1\), then \(F^i \le F^{j+2} \le \cdots F^{k+1}\). Therefore \(F^j\)
+is the intersection of two \(j+1\) faces if \(k > j+2\) and we continue doing
+this until \(k = j+2\).</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org9168caf" class="outline-3">
+<h3 id="org9168caf"><span class="section-number-3">12.6</span> Definitions</h3>
+<div class="outline-text-3" id="text-12-6">
+<p>
+\(B_0(P)\) all proper faces: reduced boundary complex
+</p>
+
+<p>
+\(B(P)\) boundary complex.
+</p>
+
+<p>
+\(\psi B(P) \rightarrow B(Q)\), then \(P \equiv Q\) are combinatorially
+equivalent.
+</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Wikipedia article about Radon'n theorem says that this is true. Crazy.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+What if \(M\) is a disc?
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+Solve the exercise for Helly's theorem. 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+Interestingly, convexity of the set is not used here. It's probably only
+needed for the uniqueness.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+I think I made a mistake in what I wrote here.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
+If \(p_K\) is what we already know, we know that every point in \(p_k(\R^n \
+K)\) &sub; M$ has a supporting hyperplane. We'll try to figure out more about
+this set.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara"><p class="footpara">
+I think I made mistakes in framing at the beginning of the paragraph.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8">8</a></sup> <div class="footpara"><p class="footpara">
+Did I write this statement correctly?
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9">9</a></sup> <div class="footpara"><p class="footpara">
+We're interested in spaces that can be formed by finitely many
+intersections of hyperplanes. These will be called Polyhedra. An non-example is
+a disc.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.10" class="footnum" href="#fnr.10">10</a></sup> <div class="footpara"><p class="footpara">
+I don't understand what's happening at the end 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.11" class="footnum" href="#fnr.11">11</a></sup> <div class="footpara"><p class="footpara">
+Apparently the statement would be true for polytopes, i.e., the converse
+holds for polytopes. This is one of the reason we're interested in polytopes. 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.12" class="footnum" href="#fnr.12">12</a></sup> <div class="footpara"><p class="footpara">
+We need the next statement for making this assertion. 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.13" class="footnum" href="#fnr.13">13</a></sup> <div class="footpara"><p class="footpara">
+This is why we assumed that \(0\) is in \(K\), otherwise we'll have to play
+around.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.14" class="footnum" href="#fnr.14">14</a></sup> <div class="footpara"><p class="footpara">
+Question: what about infinite intersection. 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.15" class="footnum" href="#fnr.15">15</a></sup> <div class="footpara"><p class="footpara">
+This means that we can choose a supporting hyperplane by choosing a
+point inside relative interior.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.16" class="footnum" href="#fnr.16">16</a></sup> <div class="footpara"><p class="footpara">
+Remember the example with a square and a half disc glued to the right side of the square?
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.17" class="footnum" href="#fnr.17">17</a></sup> <div class="footpara"><p class="footpara">
+He didn't prove this, but it's obvious.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.18" class="footnum" href="#fnr.18">18</a></sup> <div class="footpara"><p class="footpara">
+I think I'm missing some stuff.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.19" class="footnum" href="#fnr.19">19</a></sup> <div class="footpara"><p class="footpara">
+I think it means, the inclusion becomes opposite in the other space.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.20" class="footnum" href="#fnr.20">20</a></sup> <div class="footpara"><p class="footpara">
+The construction is similar to the construction of a toric variety.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.21" class="footnum" href="#fnr.21">21</a></sup> <div class="footpara"><p class="footpara">
+Connection with analysis: For a smooth real valued function from \(\R\),
+we have a unique normal, whereas for a non-smooth point, there are several
+different normals (or supporting hyperplane.) We'll do something similar in our
+course.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.22" class="footnum" href="#fnr.22">22</a></sup> <div class="footpara"><p class="footpara">
+This may or may not be true. Wasn't discussed in the class.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.23" class="footnum" href="#fnr.23">23</a></sup> <div class="footpara"><p class="footpara">
+We use the fact that every compact function has a supremum.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.24" class="footnum" href="#fnr.24">24</a></sup> <div class="footpara"><p class="footpara">
+There is also the notion of sequential compactness. Compactness and
+sequential compactness are not equivalent.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.25" class="footnum" href="#fnr.25">25</a></sup> <div class="footpara"><p class="footpara">
+\(f(x) = 1/x\) and \(f'(x) = - 1/x^2\), but the function is not always
+increasing (but on connected components.)
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.26" class="footnum" href="#fnr.26">26</a></sup> <div class="footpara"><p class="footpara">
+If we put \(\relint\) instead of \(\inte\), it will not work. This is why we
+use the assumption, that we are using a full dimensional convex body rather than
+a random one.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.27" class="footnum" href="#fnr.27">27</a></sup> <div class="footpara"><p class="footpara">
+Positive homogenous is a function \(f(\alpha x) = \alpha^k f(x)\).
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.28" class="footnum" href="#fnr.28">28</a></sup> <div class="footpara"><p class="footpara">
+We now have the triangle inequality. But for the norm, we should also
+have the following property: \(\Vert \lambda x \Vert = \vert \lambda \vert \Vert
+x \Vert\).
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.29" class="footnum" href="#fnr.29">29</a></sup> <div class="footpara"><p class="footpara">
+Apparently it's slightly different in the book. Which book?
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.30" class="footnum" href="#fnr.30">30</a></sup> <div class="footpara"><p class="footpara">
+We didn't prove this and the theorem before.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.31" class="footnum" href="#fnr.31">31</a></sup> <div class="footpara"><p class="footpara">
+Think about \(S_i\) as having a unique color. I guess each $S<sub>i</sub>$s are
+disjoint.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.32" class="footnum" href="#fnr.32">32</a></sup> <div class="footpara"><p class="footpara">
+Reminds me of something form Topology.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.33" class="footnum" href="#fnr.33">33</a></sup> <div class="footpara"><p class="footpara">
+It also holds for Polyhderal set. But we didn't do it.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.34" class="footnum" href="#fnr.34">34</a></sup> <div class="footpara"><p class="footpara">
+In algebraic topology, we know that the boundary of a Polytope is a CW
+complex. What we're proving right now is that the boundary is a Pseudo Manifold.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.35" class="footnum" href="#fnr.35">35</a></sup> <div class="footpara"><p class="footpara">
+For manifolds this proves that the top homology is exactly \(\Z\).
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Hari</p>
+<p class="date">Created: 2018-11-28 Wed 10:20</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

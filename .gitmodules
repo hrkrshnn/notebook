@@ -1,0 +1,9 @@
+[submodule "math/dg1"]
+	path = math/dg1
+	url = https://github.com/hrkrshnn/dg1.git
+[submodule "math/dm2"]
+	path = math/dm2
+	url = https://github.com/hrkrshnn/dm2.git
+[submodule "math/fa1"]
+	path = math/fa1
+	url = https://github.com/hrkrshnn/fa1.git
